@@ -1,0 +1,74 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: cs2-server
+  name: cs2-server
+  namespace: cs2-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cs2-server
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: cs2-server
+    spec:
+      containers:
+        - image: monroeshindelar/cs2-server
+          name: cs2-dedicated
+          envFrom:
+            - configMapRef: 
+                name: cs2-cm
+          env:
+            - name: CS2_PW
+              valueFrom:
+                secretKeyRef:
+                  name: cs2-server-secrets
+                  key: serverPassword
+            - name: CS2_RCONPW
+              valueFrom:
+                secretKeyRef:
+                  name: cs2-server-secrets
+                  key: rconPassword
+            - name: SRCDS_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: cs2-server-secrets
+                  key: srcdsToken
+            - name: TV_PW
+              valueFrom:
+                secretKeyRef:
+                  name: cs2-server-secrets
+                  key: tvPassword
+            - name: TV_RELAY_PW
+              valueFrom:
+                secretKeyRef:
+                  name: cs2-server-secrets
+                  key: tvRelayPassword
+          ports:
+            - name: server
+              containerPort: 27015
+            - name: server-udp
+              containerPort: 27015
+              protocol: UDP
+            - name: tv
+              containerPort: 27017
+              protocol: UDP
+            - containerPort: 27016
+              protocol: UDP
+          resources:
+            requests:
+              memory: "6Gi"
+              cpu: "1000m"
+          volumeMounts:
+            - mountPath: /home/steam/cs2-dedicated/
+              name: cs2-server-datadir
+      restartPolicy: Always
+      volumes:
+        - name: cs2-server-datadir
+          persistentVolumeClaim:
+            claimName: cs2-server-datadir

@@ -1,0 +1,31 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  labels:
+    app: cs2-server
+  name: cs2-cm
+  namespace: cs2-server
+data:
+  CS2_CHEATS: "1"
+  CS2_GAMEALIAS: "competitive"
+  CS2_GAMEMODE: "1"
+  CS2_GAMETYPE: "0"
+  CS2_LAN: "0"
+  CS2_LOG: "on"
+  CS2_LOG_DETAIL: "3"
+  CS2_LOG_ITEMS: "1"
+  CS2_LOG_MONEY: "1"
+  CS2_MAPGROUP: "mg_active"
+  CS2_MAXPLAYERS: "10"
+  CS2_PORT: "27015"
+  CS2_SERVERNAME: "goldserver"
+  CS2_SERVER_HIBERNATE: "0"
+  CS2_STARTMAP: "de_inferno"
+  PUID: "1027"
+  PGID: "100"
+  TV_AUTORECORD: "1"
+  TV_DELAY: "0"
+  TV_ENABLE: "1"
+  TV_MAXRATE: "0"
+  TV_PORT: "27017"
