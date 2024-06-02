@@ -1,0 +1,20 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  labels:
+    app: palworld-server
+  name: palworld-cm
+  namespace: palworld-server
+data:
+  COMMUNITY: "false"
+  PUID: "1027"
+  PGID: "100"
+  PLAYERS: "16"
+  PORT: "8211"
+  MULTITHREADING: "true"
+  RCON_ENABLED: "true"
+  RCON_PORT: "25575"
+  SERVER_DESCRIPTION: ""
+  SERVER_NAME: "Jevland"
+  TZ: "UTC"
