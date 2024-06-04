@@ -63,7 +63,7 @@ spec:
           resources:
             requests:
               memory: "6Gi"
-              cpu: "1000m"
+              cpu: "2000m"
           volumeMounts:
             - mountPath: /home/steam/cs2-dedicated/
               name: cs2-server-datadir

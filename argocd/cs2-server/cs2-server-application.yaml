@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: cs2-server-application
+  name: cs2-server
   namespace: argocd
 spec:
   project: cs2-server-project

@@ -43,6 +43,10 @@ spec:
                 secretKeyRef:
                   name: palworld-secrets
                   key: serverPassword
+          resources:
+            requests:
+              memory: "16Gi"
+              cpu: "4000m"
           volumeMounts:
             - mountPath: /palworld
               name: datadir
