@@ -1236,6 +1236,8 @@ alertmanager:
       server: 10.0.0.187
       path: "/volume1/containers/prometheus-alertsmanager"
     persistentVolumeReclaimPolicy: Retain
+    accessModes:
+    - ReadWriteOnce
 
   podSecurityContext:
     runAsUser: 65534
