@@ -11,7 +11,7 @@ spec:
       targetRevision: 25.21.0
       helm:
         valueFiles:
-          - $values/values.yml
+          - $values/values.yaml
     - repoURL: https://github.com/Monroeshindelar/kubernetes-manifests.git
       targetRevision: HEAD
       path: prometheus
