@@ -7,9 +7,9 @@ metadata:
   name: grafana-datadir
   namespace: monitoring
 spec:
+  storageClassName: ""
   accessModes:
   - ReadWriteOnce
   resources:
     requests:
       storage: 10Gi
-  storageClassName: ""
