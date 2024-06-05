@@ -1,33 +1,15 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  annotations:
-    kubectl.kubernetes.io/last-applied-configuration: |
-      {"apiVersion":"v1","kind":"PersistentVolume","metadata":{"annotations":{},"name":"grafana-persistent-volume"},"spec":{"accessModes":["ReadWriteOnce"],"capacity":{"storage":"10Gi"},"nfs":{"path":"/volume1/containers/grafana","server":"10.0.0.187"},"persistentVolumeReclaimPolicy":"Retain","storageClassName":""}}
-    pv.kubernetes.io/bound-by-controller: "yes"
-  creationTimestamp: "2024-06-03T03:11:43Z"
-  finalizers:
-  - kubernetes.io/pv-protection
   name: grafana-persistent-volume
-  resourceVersion: "2175242"
-  uid: 76f6470c-28c8-4e00-be53-5097e85b6b91
+  namespace: monitoring
 spec:
-  accessModes:
-  - ReadWriteOnce
   capacity:
     storage: 10Gi
-  claimRef:
-    apiVersion: v1
-    kind: PersistentVolumeClaim
-    name: grafana-datadir
-    namespace: monitoring
-    resourceVersion: "2175239"
-    uid: d0fb2d02-acb2-4af7-b7d1-5c15c9b1e596
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: ""
+  accessModes:
+    - ReadWriteOnc
   nfs:
     path: /volume1/containers/grafana
     server: 10.0.0.187
-  persistentVolumeReclaimPolicy: Retain
-  volumeMode: Filesystem
-status:
-  lastPhaseTransitionTime: "2024-06-03T03:11:47Z"
-  phase: Bound
