@@ -10,7 +10,7 @@ spec:
       repoURL: https://prometheus-community.github.io/helm-charts
       targetRevision: 25.21.0
       helm:
-        vauleFiles:
+        valueFiles:
           - $git/values.yml
     - repoURL: https://github.com/Monroeshindelar/kubernetes-manifests.git
       targetRevision: HEAD
