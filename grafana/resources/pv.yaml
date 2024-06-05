@@ -9,7 +9,7 @@ spec:
   persistentVolumeReclaimPolicy: Retain
   storageClassName: ""
   accessModes:
-    - ReadWriteOnc
+    - ReadWriteOnce
   nfs:
     path: /volume1/containers/grafana
     server: 10.0.0.187
