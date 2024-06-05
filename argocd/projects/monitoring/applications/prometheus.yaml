@@ -14,7 +14,7 @@ spec:
           - $values/prometheus/values.yaml
     - repoURL: https://github.com/Monroeshindelar/kubernetes-manifests.git
       targetRevision: HEAD
-      path: prometheus
+      path: prometheus/resources
       directory:
         recurse: true
       ref: values
