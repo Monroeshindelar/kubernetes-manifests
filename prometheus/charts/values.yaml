@@ -1231,6 +1231,7 @@ alertmanager:
   enabled: true
 
   persistence:
+    enabled: true
     size: 2Gi
     nfs:
       server: 10.0.0.187
