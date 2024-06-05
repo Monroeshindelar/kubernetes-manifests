@@ -11,13 +11,13 @@ spec:
       targetRevision: 25.21.0
       helm:
         valueFiles:
-          - $git/values.yml
+          - $values/values.yml
     - repoURL: https://github.com/Monroeshindelar/kubernetes-manifests.git
       targetRevision: HEAD
       path: prometheus
       directory:
         recurse: true
-      ref: git
+      ref: values
   destination:
     server: "https://kubernetes.default.svc"
     namespace: monitoring
