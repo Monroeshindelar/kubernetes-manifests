@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: https://github.com/Monroeshindelar/kubernetes-manifests.git
     targetRevision: HEAD
-    path: argocd/projects
+    path: config/projects
     directory:
       recurse: true
   destination:
