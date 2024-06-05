@@ -6,15 +6,15 @@ metadata:
 spec:
   project: monitoring-project
   sources:
-    - chart: prometheus
-      repoURL: https://prometheus-community.github.io/helm-charts
-      targetRevision: 25.21.0
+    - chart: grafana
+      repoURL: https://grafana.github.io/helm-charts
+      targetRevision: 8.0.0
       helm:
         valueFiles:
-          - $values/prometheus/charts/values.yaml
+          - $values/grafana/charts/values.yaml
     - repoURL: https://github.com/Monroeshindelar/kubernetes-manifests.git
       targetRevision: HEAD
-      path: prometheus/resources
+      path: grafana/resources
       directory:
         recurse: true
       ref: values
