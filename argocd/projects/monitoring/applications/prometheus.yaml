@@ -7,7 +7,7 @@ spec:
   project: monitoring-project
   sources:
     - chart: prometheus
-      repoURL:
+      repoURL: 'https://prometheus-community.github.io/helm-charts'
       helm:
         vauleFiles:
           - $git/values.yml
