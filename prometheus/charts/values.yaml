@@ -335,7 +335,7 @@ server:
     ## Prometheus server Ingress annotations
     ##
     annotations:
-      providers.kubernetesingress.ingressendpoint.publishedservice: NAMESPACE/TRAEFIK_SVC_NAME
+      providers.kubernetesingress.ingressendpoint.publishedservice: networking/traefik-web-service
     #   kubernetes.io/ingress.class: nginx
     #   kubernetes.io/tls-acme: 'true'
 
