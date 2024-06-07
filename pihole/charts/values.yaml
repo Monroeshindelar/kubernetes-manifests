@@ -129,9 +129,9 @@ serviceWeb:
   loadBalancerIPv6: ""
 
   # -- Annotations for the DHCP service
-  annotations: {}
-    # metallb.universe.tf/address-pool: network-services
-    # metallb.universe.tf/allow-shared-ip: pihole-svc
+  annotations:
+    metallb.universe.tf/address-pool: network-services
+    metallb.universe.tf/allow-shared-ip: pihole-svc
 
   # -- Labels for the web interface service
   extraLabels:
@@ -155,6 +155,8 @@ ingress:
   hosts:
     # virtualHost (default value is pi.hole) will be appended to the hosts
     - pihole.jevn.sex.local
+    - pihole.jevn.sex
+    - pihole.monroeshindelar.com
   tls: []
   #  - secretName: chart-example-tls
   #    hosts:
@@ -209,7 +211,7 @@ resources: {}
 # -- `spec.PersitentVolumeClaim` configuration
 persistentVolumeClaim:
   # -- set to true to use pvc
-  enabled: false
+  enabled: true
 
   # -- specify an existing `PersistentVolumeClaim` to use
   # existingClaim: ""
