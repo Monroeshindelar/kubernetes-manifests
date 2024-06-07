@@ -326,7 +326,7 @@ logs:
 
 metrics:
   ## -- Enable metrics for internal resources. Default: false
-  addInternals:
+  addInternals: true
 
   ## -- Prometheus is enabled by default.
   ## -- It can be disabled by setting "prometheus: null"
@@ -336,9 +336,9 @@ metrics:
     ## Enable metrics on entry points. Default=true
     # addEntryPointsLabels: false
     ## Enable metrics on routers. Default=false
-    # addRoutersLabels: true
+    addRoutersLabels: true
     ## Enable metrics on services. Default=true
-    # addServicesLabels: false
+    addServicesLabels: false
     ## Buckets for latency metrics. Default="0.1,0.3,1.2,5.0"
     # buckets: "0.5,1.0,2.5"
     ## When manualRouting is true, it disables the default internal router in
