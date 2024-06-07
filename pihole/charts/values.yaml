@@ -142,7 +142,7 @@ virtualHost: pi.hole
 # -- Configuration for the Ingress
 ingress:
   # -- Generate a Ingress resource
-  enabled: false
+  enabled: true
 
   # -- Specify an ingressClassName
   # ingressClassName: nginx
@@ -154,7 +154,7 @@ ingress:
   path: /
   hosts:
     # virtualHost (default value is pi.hole) will be appended to the hosts
-    - chart-example.local
+    - pihole.jevn.sex.local
   tls: []
   #  - secretName: chart-example-tls
   #    hosts:
