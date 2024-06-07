@@ -9,30 +9,30 @@ spec:
   ports:
   - name: synology
     port: 5000
-    targetPort: 5000
+    targetPort: synology
     protocol: TCP
   - name: nfs-tcp
     port: 111
-    targetPort: 111
+    targetPort: nfs-tcp
     protocol: TCP
   - name: nfs-udp
     port: 111
-    targetPort: 111
+    targetPort: nfs-udp
     protocol: UDP
   - name: nfs-tcp-1
     port: 892
-    targetPort: 892
+    targetPort: nfs-tcp-1
     protocol: TCP
   - name: nfs-udp-1
     port: 892
-    targetPort: 892
+    targetPort: nfs-udp-1
     protocol: UDP
   - name: nfs-tcp-2
     port: 2049
-    targetPort: 2049
+    targetPort: nfs-tcp-2
     protocol: TCP
   - name: nfs-udp-2
     port: 2049
-    targetPort: 2049
+    targetPort: nfs-udp-2
     protocol: UDP
   
