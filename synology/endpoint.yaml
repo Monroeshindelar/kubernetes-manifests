@@ -13,3 +13,21 @@ subsets:
   - name: synology
     port: 5000
     protocol: TCP
+  - name: nfs-tcp
+    port: 111
+    protocol: TCP
+  - name: nfs-udp
+    port: 111
+    protocol: TCP
+  - name: nfs-tcp-1
+    port: 892
+    protocol: TCP
+  - name: nfs-udp-1
+    port: 892
+    protocol: UDP
+  - name: nfs-tcp-2
+    port: 2049
+    protocol: TCP
+  - name: nfs-udp-2
+    port: 2049
+    protocol: UDP
