@@ -90,7 +90,9 @@ configmapReload:
       #   readOnly: true
 
     ## Security context to be added to configmap-reload container
-    containerSecurityContext: {}
+    containerSecurityContext:
+      runAsUser: 1027
+      runAsGroup: 100
 
     ## configmap-reload resource requests and limits
     ## Ref: http://kubernetes.io/docs/user-guide/compute-resources/

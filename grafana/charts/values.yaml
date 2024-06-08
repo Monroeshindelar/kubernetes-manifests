@@ -120,7 +120,9 @@ testFramework:
     repository: bats/bats
     tag: "v1.4.1"
   imagePullPolicy: IfNotPresent
-  securityContext: {}
+  securityContext:
+    runAsUser: 1027
+    runAsGroup: 100
   resources: {}
   #  limits:
   #    cpu: 100m
