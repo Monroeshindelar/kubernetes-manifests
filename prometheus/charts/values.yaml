@@ -93,6 +93,7 @@ configmapReload:
     containerSecurityContext:
       runAsUser: 1027
       runAsGroup: 100
+      runAsNonRoot: true
 
     ## configmap-reload resource requests and limits
     ## Ref: http://kubernetes.io/docs/user-guide/compute-resources/
@@ -663,14 +664,17 @@ server:
   securityContext:
     runAsUser: 1027
     runAsGroup: 100
+    runAsNonRoot: true
     # runAsUser: 65534
-    # runAsNonRoot: true
     # runAsGroup: 65534
     # fsGroup: 65534
 
   ## Security context to be added to server container
   ##
-  containerSecurityContext: {}
+  containerSecurityContext:
+    runAsUser: 1027
+    runAsGroup: 100
+    runAsNonRoot: true
 
   service:
     ## If false, no Service will be created for the Prometheus server
@@ -1247,8 +1251,8 @@ alertmanager:
   podSecurityContext:
     runAsUser: 1027
     runAsGroup: 100
+    runAsNonRoot: true
     # runAsUser: 65534
-    # runAsNonRoot: true
     # runAsGroup: 65534
     # fsGroup: 65534
 
@@ -1273,6 +1277,9 @@ prometheus-node-exporter:
 
   containerSecurityContext:
     allowPrivilegeEscalation: false
+    runAsUser: 1027
+    runAsGroup: 100
+    runAsNonRoot: true
 
 ## prometheus-pushgateway sub-chart configurable values
 ## Please see https://github.com/prometheus-community/helm-charts/tree/main/charts/prometheus-pushgateway
