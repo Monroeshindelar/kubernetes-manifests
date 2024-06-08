@@ -7,7 +7,6 @@ metadata:
   name: cs2-server-datadir
   namespace: cs2-server
 spec:
-  storageClassName: ""
   accessModes:
     - ReadWriteOnce
   resources:
