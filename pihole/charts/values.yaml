@@ -22,6 +22,10 @@ image:
   # -- the pull policy
   pullPolicy: IfNotPresent
 
+  securityContext:
+    runAsUser: 1027
+    runAsGroup: 100
+
 dualStack:
   # -- set this to true to enable creation of DualStack services or creation of separate IPv6 services if `serviceDns.type` is set to `"LoadBalancer"`
   enabled: false
