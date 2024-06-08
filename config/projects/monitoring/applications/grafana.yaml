@@ -14,7 +14,7 @@ spec:
           - $values/grafana/charts/values.yaml
     - repoURL: https://github.com/Monroeshindelar/kubernetes-manifests.git
       targetRevision: HEAD
-      path: grafana/resources
+      path: grafana
       directory:
         recurse: true
       ref: values
