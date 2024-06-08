@@ -1,0 +1,26 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: nfs-subdir-external-provisioner
+  namespace: argocd
+spec:
+  project: monitoring-project
+  sources:
+    - chart: nfs-subdir-external-provisioner
+      repoURL: https://kubernetes-sigs.github.io/nfs-subdir-external-provisioner
+      targetRevision: 4.0.18
+      helm:
+        valueFiles:
+          - $git/nfs-subdir-external-provisioner/charts/values.yaml
+    - repoURL: https://github.com/Monroeshindelar/kubernetes-manifests.git
+      targetRevision: HEAD
+      path: nfs-subdir-external-provisioner
+      directory:
+        recurse: true
+      ref: git
+  destination:
+    server: "https://kubernetes.default.svc"
+    namespace: monitoring
+  syncPolicy:
+    automated:
+      prune: true
