@@ -67,6 +67,7 @@ spec:
           volumeMounts:
             - mountPath: /home/steam/cs2-dedicated/
               name: cs2-server-datadir
+              subPath: cs2-server
       restartPolicy: Always
       volumes:
         - name: cs2-server-datadir

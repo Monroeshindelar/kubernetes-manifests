@@ -1,15 +1,14 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: pihole-persistent-volume
-  namespace: networking
+  name: nas-containers-persistent-volume
 spec:
   capacity:
-    storage: 1Gi
+    storage: 1000Gi
   persistentVolumeReclaimPolicy: Retain
   storageClassName: ""
   accessModes:
     - ReadWriteOnce
   nfs:
     server: 10.0.0.187
-    path: "/volume1/containers"
+    path: "/volume1/containers/"

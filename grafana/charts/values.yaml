@@ -365,17 +365,17 @@ persistence:
   type: pvc
   enabled: true
   # storageClassName: default
-  # accessModes:
-  #   - ReadWriteOnce
-  # size: 10Gi
+  accessModes:
+    - ReadWriteOnce
+  size: 10Gi
   # annotations: {}
   finalizers:
     - kubernetes.io/pvc-protection
   # selectorLabels: {}
   ## Sub-directory of the PV to mount. Can be templated.
-  # subPath: ""
+  subPath: "grafana"
   ## Name of an existing PVC. Can be templated.
-  existingClaim: grafana-datadir
+  # existingClaim: grafana-datadir
   ## Extra labels to apply to a PVC.
   extraPvcLabels: {}
 

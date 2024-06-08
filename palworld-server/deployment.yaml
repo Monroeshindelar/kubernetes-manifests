@@ -50,6 +50,7 @@ spec:
           volumeMounts:
             - mountPath: /palworld
               name: datadir
+              subPath: palworld-server
       volumes:
         - name: datadir
           persistentVolumeClaim:
