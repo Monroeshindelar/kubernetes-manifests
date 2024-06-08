@@ -661,10 +661,12 @@ server:
   ## Security context to be added to server pods
   ##
   securityContext:
-    runAsUser: 65534
-    runAsNonRoot: true
-    runAsGroup: 65534
-    fsGroup: 65534
+    runAsUser: 1027
+    runAsGroup: 100
+    # runAsUser: 65534
+    # runAsNonRoot: true
+    # runAsGroup: 65534
+    # fsGroup: 65534
 
   ## Security context to be added to server container
   ##
