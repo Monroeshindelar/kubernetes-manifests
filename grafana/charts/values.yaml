@@ -143,9 +143,9 @@ dnsConfig: {}
 
 securityContext:
   runAsNonRoot: true
-  runAsUser: 472
-  runAsGroup: 472
-  fsGroup: 472
+  runAsUser: 1027
+  runAsGroup: 100
+  # fsGroup: 472
 
 containerSecurityContext:
   allowPrivilegeEscalation: false
