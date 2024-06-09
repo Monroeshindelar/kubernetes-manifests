@@ -187,14 +187,19 @@ extraEnv: {}
 
 
 # Optionally specify additional volume mounts for the PMS and init containers.
-extraVolumeMounts: []
+extraVolumeMounts:
+  - name: videos
+    mountPath: /videos
 # extraVolumeMounts:
 #   - name: some-volume-name
 #     mountPath: /path/in/container
 
 
 # Optionally specify additional volumes for the pod.
-extraVolumes: []
+extraVolumes:
+  - name: videos
+    persistentVolumeClaim:
+      name: videos-claim
 # extraVolumes:
 #   - name: some-volume-name
 #     emptyDir: {}
