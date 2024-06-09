@@ -6,4 +6,4 @@ storageClass:
   reclaimPolicy: Retain
   annotations:
     storageclass.kubernetes.io/is-default-class: "true"
-  pathPattern: ${.PVC.namespace}-${.PVC.name}
+  pathPattern: ${.PVC.name}
