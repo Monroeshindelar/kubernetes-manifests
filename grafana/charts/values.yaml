@@ -364,6 +364,7 @@ extraContainerVolumes: []
 persistence:
   type: pvc
   enabled: true
+  name: "grafana-datadir"
   # storageClassName: default
   accessModes:
     - ReadWriteOnce
@@ -373,7 +374,7 @@ persistence:
     - kubernetes.io/pvc-protection
   # selectorLabels: {}
   ## Sub-directory of the PV to mount. Can be templated.
-  subPath: "grafana"
+  # subPath: "grafana"
   ## Name of an existing PVC. Can be templated.
   # existingClaim: grafana-datadir
   ## Extra labels to apply to a PVC.
