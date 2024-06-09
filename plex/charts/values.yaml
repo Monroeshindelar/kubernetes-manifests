@@ -199,7 +199,7 @@ extraVolumeMounts:
 extraVolumes:
   - name: videos
     persistentVolumeClaim:
-      name: videos-claim
+      claimName: videos-claim
 # extraVolumes:
 #   - name: some-volume-name
 #     emptyDir: {}
