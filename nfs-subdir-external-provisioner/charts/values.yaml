@@ -4,4 +4,4 @@ nfs:
   reclaimPolicy: Retain 
 storageClass:
   reclaimPolicy: Retain
-  pathPattern: ""
+  pathPattern: '/${.PVC.namespace}-${.PVC.name}'
