@@ -4,7 +4,7 @@ kind: PersistentVolumeClaim
 metadata:
   labels:
     app: palworld-server
-  name: palworld-server-datadir
+  name: palworld-server
   namespace: palworld-server
 spec:
   accessModes:

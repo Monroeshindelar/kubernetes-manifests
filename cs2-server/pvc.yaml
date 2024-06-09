@@ -4,7 +4,7 @@ kind: PersistentVolumeClaim
 metadata:
   labels:
     app: cs2-server
-  name: cs2-server-datadir
+  name: cs2-server
   namespace: cs2-server
 spec:
   accessModes:

@@ -49,9 +49,9 @@ spec:
               cpu: "4000m"
           volumeMounts:
             - mountPath: /palworld
-              name: datadir
+              name: palworld-server-datadir
               subPath: palworld-server
       volumes:
-        - name: datadir
+        - name: palworld-server-datadir
           persistentVolumeClaim:
-            claimName: palworld-server-datadir
+            claimName: palworld-server
