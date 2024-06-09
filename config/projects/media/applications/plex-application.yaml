@@ -4,7 +4,7 @@ metadata:
   name: plex
   namespace: argocd
 spec:
-  project: monitoring-project
+  project: media-project
   sources:
     - chart: plex-media-server
       repoURL: https://raw.githubusercontent.com/plexinc/pms-docker/gh-pages
