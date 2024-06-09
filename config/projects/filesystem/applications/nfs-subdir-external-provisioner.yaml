@@ -4,7 +4,7 @@ metadata:
   name: nfs-subdir-external-provisioner
   namespace: argocd
 spec:
-  project: monitoring-project
+  project: filesystem-project
   sources:
     - chart: nfs-subdir-external-provisioner
       repoURL: https://kubernetes-sigs.github.io/nfs-subdir-external-provisioner
@@ -20,7 +20,7 @@ spec:
       ref: git
   destination:
     server: "https://kubernetes.default.svc"
-    namespace: monitoring
+    namespace: filesystem
   syncPolicy:
     automated:
       prune: true
