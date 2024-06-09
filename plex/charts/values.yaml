@@ -204,15 +204,6 @@ extraVolumes:
 #   - name: some-volume-name
 #     emptyDir: {}
 
-extraContainers:
-  - name: plex-media-server-exporter
-    image: axsuul/plex-media-server-exporter
-    imagePullPolicy: IfNotPresent
-    env:
-      - name: PLEX_TOKEN
-        value: 6iXKgVzE6Lj-126qQnXB
-    ports:
-      - containerPort: 9594
 # extraContainers:
 #  - name: <container name>
 #    args:
