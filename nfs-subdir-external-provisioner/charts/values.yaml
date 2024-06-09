@@ -4,3 +4,4 @@ nfs:
   reclaimPolicy: Retain 
 storageClass:
   reclaimPolicy: Retain
+  pathPattern: ""
