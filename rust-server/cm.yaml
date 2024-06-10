@@ -1,0 +1,32 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  labels:
+    app: rust-server
+  name: rust-cm
+  namespace: rust-server
+data:
+  RUST_SERVER_STARTUP_ARGUMENTS: "-batchmode -load -nographics +server.secure 1"
+  RUST_SERVER_IDENTITY: "docker"
+  RUST_SERVER_PORT: ""
+  RUST_SERVER_QUERYPORT: ""
+  RUST_SERVER_SEED: 12345
+  RUST_SERVER_WORLDSIZE: 3500
+  RUST_SERVER_NAME: "Goldserver"
+  RUST_SERVER_MAXPLAYERS: 500
+  RUST_SERVER_DESCRIPTION: ""
+  RUST_SERVER_URL: "https://jevn.sex"
+  RUST_SERVER_BANNER_URL: ""
+  RUST_SERVER_SAVE_INTERVAL: "600"
+  RUST_RCON_WEB: "1"
+  RUST_RCON_PORT: "28016"
+  RUST_APP_PORT: "28082"
+  RUST_BRANCH: null
+  RUST_UPDATE_CHECKING: "0"
+  RUST_UPDATE_BRANCH: "public"
+  RUST_START_MODE: "0"
+  RUST_OXIDE_ENABLED: "0"
+  RUST_OXIDE_UPDATE_ON_BOOT: "1"
+  RUST_RCON_SECURE_WEBSOCKET: "0"
+  RUST_HEARTBEAT: "1"

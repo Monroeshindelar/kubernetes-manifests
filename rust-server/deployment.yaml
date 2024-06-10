@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: rust-server
+  name: rust-server
+  namespace: rust-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rust-server
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: rust-server
+    spec:
+      containers:
+        - image: didstopia/rust-server
+          name: rust-server
+          envFrom:
+            - configMapRef: 
+                name: rust-cm
+          env:
+            - name: RUST_RCON_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: rust-server-secrets
+                  key: rconPassword
+          ports:
+            - name: server
+              containerPort: 28015
+            - name: server-udp
+              containerPort: 28015
+              protocol: UDP
+            - name: rcon
+              containerPort: 28016
+          resources:
+            requests:
+              memory: "6Gi"
+              cpu: "2000m"
+          volumeMounts:
+            - mountPath: /steamcmd/rust
+              name: rust-server-datadir
+      restartPolicy: Always
+      volumes:
+        - name: rust-server-datadir
+          persistentVolumeClaim:
+            claimName: rust-server
