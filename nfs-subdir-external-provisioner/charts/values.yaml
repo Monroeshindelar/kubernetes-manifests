@@ -1,5 +1,5 @@
 nfs:
-  server: 10.0.0.186
+  server: 10.0.0.187
   path: /volume1/containers
   reclaimPolicy: Retain 
 storageClass:
