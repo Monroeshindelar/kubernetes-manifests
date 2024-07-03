@@ -742,18 +742,18 @@ scrapeConfigFiles: []
 serverFiles:
   ## Alerts configuration
   ## Ref: https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/
-  alerting_rules.yml: {}
-  # groups:
-  #   - name: Instances
-  #     rules:
-  #       - alert: InstanceDown
-  #         expr: up == 0
-  #         for: 5m
-  #         labels:
-  #           severity: page
-  #         annotations:
-  #           description: '{{ $labels.instance }} of job {{ $labels.job }} has been down for more than 5 minutes.'
-  #           summary: 'Instance {{ $labels.instance }} down'
+  alerting_rules.yml:
+    groups:
+      - name: Instances
+        rules:
+          - alert: InstanceDown
+            expr: up == 0
+            for: 1m
+            labels:
+              severity: critical
+            annotations:
+              description: '{{ $labels.instance }} of job {{ $labels.job }} has been down for more than 1 minute.'
+              summary: 'Instance {{ $labels.instance }} down'
   ## DEPRECATED DEFAULT VALUE, unless explicitly naming your files, please use alerting_rules.yml
   alerts: {}
 
@@ -1246,15 +1246,11 @@ alertmanager:
     accessModes:
     - ReadWriteOnce
     name: "prometheus-alertsmanager-datadir"
-    # subPath: "prometheus-alertsmanager"
 
   podSecurityContext:
     runAsUser: 1027
     runAsGroup: 100
     runAsNonRoot: true
-    # runAsUser: 65534
-    # runAsGroup: 65534
-    # fsGroup: 65534
 
 ## kube-state-metrics sub-chart configurable values
 ## Please see https://github.com/prometheus-community/helm-charts/tree/main/charts/kube-state-metrics
