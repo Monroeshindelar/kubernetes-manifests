@@ -1,3 +1,4 @@
 palworld-server/secret.yaml
 cs2-server/secrets.yaml
 rust-server/secret.yaml
+porkbun-ddns/secret.yaml
