@@ -19,7 +19,7 @@ ingress:
   ingressClassName: traefik
 
   # The url to use for the ingress reverse proxy to point at this pms instance
-  url: "plex.jevn.sex.local"
+  url: "plex.jevn.sex"
 
   # Custom annotations to put on the ingress resource
   annotations: {}
