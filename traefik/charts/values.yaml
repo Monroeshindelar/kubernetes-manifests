@@ -558,7 +558,7 @@ env:
 # -- Environment variables to be passed to Traefik's binary from configMaps or secrets
 envFrom:
 - secretRef:
-  name: traefik
+    name: traefik
 
 ports:
   traefik:
