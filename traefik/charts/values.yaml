@@ -688,7 +688,7 @@ ports:
       options: ""
       certResolver: porkbun
       domains:
-      - *.jevn.sex
+      - jevn.sex
       # - main: example.com
       #   sans:
       #     - foo.example.com
