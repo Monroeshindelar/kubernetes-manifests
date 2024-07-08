@@ -803,6 +803,7 @@ persistence:
 certResolvers:
   porkbun:
     acme:
+      email: monroeshindelar@proton.me
       dnsChallenge:
         provider: porkbun
 
