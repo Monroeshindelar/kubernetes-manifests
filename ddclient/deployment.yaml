@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: ddclient
+  name: ddclient
+  namespace: networking
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ddclient
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: ddclient
+    spec:
+      containers:
+        - image: lscr.io/linuxserver/ddclient:latest
+          name: ddclient
+          volumeMounts:
+            - name: config
+              mountPath: /config
+      restartPolicy: Always
+      volumes:
+      - name: config
+        persistentVolumeClaim:
+          claimName: ddclient

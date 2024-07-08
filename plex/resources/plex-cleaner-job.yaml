@@ -1,0 +1,36 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: plex-cleaner
+  namespace: media
+  labels:
+    app: plex
+spec:
+  schedule: "0 0 * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: plex-cleaner
+            image: ptr727/plexcleaner:latest
+            imagePullPolicy: IfNotPresent
+            volumeMounts:
+            - mountPath: /cfg
+              name: config-volume
+            - mountPath: /media
+              name: media
+            command:
+            - /bin/bash
+            - -c
+            - /PlexCleaner/PlexCleaner --logfile /media/log/PlexCleaner.log process --settingsfile /cfg/PlexCleaner.json --mediafiles "/media/Anime" --mediafiles "/media/Movies" --mediafiles "/media/TV Series" 
+          restartPolicy: OnFailure
+          volumes:
+          - name: config-volume
+            configMap:
+              defaultMode: 420
+              name: plex-cleaner
+          - name: media
+            persistentVolumeClaim:
+              claimName: videos-claim
+          
