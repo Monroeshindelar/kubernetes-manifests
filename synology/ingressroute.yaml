@@ -18,3 +18,5 @@ spec:
       name: synology-service
       namespace: filesystem
       port: 5000
+  tls:
+    certResolver: porkbun
