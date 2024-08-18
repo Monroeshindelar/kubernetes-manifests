@@ -8,7 +8,6 @@ metadata:
   namespace: filesystem
 spec:
   entryPoints:
-  - web
   - websecure
   routes:
   - kind: Rule
@@ -17,6 +16,6 @@ spec:
     - kind: Service
       name: synology-service
       namespace: filesystem
-      port: 5000
+      port: 5001
   tls:
     certResolver: porkbun
