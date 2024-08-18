@@ -12,7 +12,7 @@ spec:
   - websecure
   routes:
   - kind: Rule
-    match: Host(`filesystem.jevn.sex.local`) && PathPrefix(`/`)
+    match: Host(`drive.jevn.sex`) && PathPrefix(`/`)
     services:
     - kind: Service
       name: synology-service
