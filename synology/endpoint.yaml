@@ -10,6 +10,12 @@ subsets:
 - addresses:
   - ip: 10.2.0.10
   ports:
-  - name: synology
+  - name: dsm
     port: 5000
+    protocol: TCP
+  - name: dsm-https
+    port: 5001
+    protocol: TCP
+  - name: qbt
+    port: 9865
     protocol: TCP

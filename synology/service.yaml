@@ -7,7 +7,15 @@ metadata:
   namespace: filesystem
 spec:
   ports:
-  - name: synology
+  - name: dsm
     port: 5000
-    targetPort: synology
+    targetPort: dsm
+    protocol: TCP
+  - name: dsm-https
+    port: 5001
+    targetPort: dsm-https
+    protocol: TCP
+  - name: qbt
+    port: 9865
+    targetPort: qbt
     protocol: TCP
