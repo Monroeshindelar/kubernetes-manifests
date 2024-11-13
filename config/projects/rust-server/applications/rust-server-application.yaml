@@ -12,6 +12,3 @@ spec:
   destination:
     server: "https://kubernetes.default.svc"
     namespace: rust-server
-  syncPolicy:
-    automated:
-      prune: true

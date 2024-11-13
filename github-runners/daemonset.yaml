@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: github-runner
+  namespace: github-runner
+  labels:
+    app: github-runner
+spec:
+  selector:
+    matchLabels:
+      name: github-runner
+  template:
+    metadata:
+      labels:
+        name: github-runner
+    spec:
+      tolerations:
+      - key: node-role.kubernetes.io/control-plane
+        operator: Exists
+        effect: NoSchedule
+      - key: node-role.kubernetes.io/master
+        operator: Exists
+        effect: NoSchedule
+      containers:
+      - name: runner
+        image: monroeshindelar/runner:latest
+        envFrom:
+          - configMapRef: 
+              name: github-runner-cm
+        env:
+          - name: ACCESS_TOKEN
+            valueFrom:
+              secretKeyRef:
+                name: github-runner-secret
+                key: accessToken
