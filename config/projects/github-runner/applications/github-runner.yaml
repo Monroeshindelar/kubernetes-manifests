@@ -2,15 +2,13 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: github-runner
-  namespace: github-runner
+  namespace: argocd
 spec:
   project: github-runner-project
   sources:
     - repoURL: https://github.com/Monroeshindelar/kubernetes-manifests.git
       targetRevision: HEAD
       path: github-runner
-      directory:
-        recurse: true
       ref: git
   destination:
     server: "https://kubernetes.default.svc"
