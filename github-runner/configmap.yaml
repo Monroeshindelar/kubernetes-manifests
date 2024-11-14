@@ -8,3 +8,5 @@ metadata:
   namespace: github-runner
 data:
   ORGANIZATION: "monroe-shindelar-org"
+  ACTIONS_RUNNER_FORCE_ACTIONS_NODE_VERSION: node16
+  ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION: "true"
