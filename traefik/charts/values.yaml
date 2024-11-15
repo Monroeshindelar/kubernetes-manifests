@@ -808,10 +808,11 @@ persistence:
 # See EXAMPLES.md for more details.
 certificatesResolvers:
   porkbun:
-      email: monroeshindelar@proton.me
-      storage: /data/acme.json
-      dnsChallenge:
-        provider: porkbun
+      acme:
+        email: monroeshindelar@proton.me
+        storage: /data/acme.json
+        dnsChallenge:
+          provider: porkbun
 
 # -- If hostNetwork is true, runs traefik in the host network namespace
 # To prevent unschedulable pods due to port collisions, if hostNetwork=true
