@@ -813,6 +813,7 @@ certificatesResolvers:
         storage: /data/acme.json
         dnsChallenge:
           provider: porkbun
+          delayBeforeCheck: 0
 
 # -- If hostNetwork is true, runs traefik in the host network namespace
 # To prevent unschedulable pods due to port collisions, if hostNetwork=true
