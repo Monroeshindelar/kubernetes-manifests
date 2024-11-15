@@ -1,0 +1,74 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: bluesky-pds
+  name: bluesky-pds
+  namespace: bluesky
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: bluesky-pds
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: bluesky-pds
+    spec:
+      containers:
+        - image: caddy:2
+          name: caddy
+          volumeMounts:
+            - mountPath: /
+              name: bluesky-pds-datadir
+              subPath: caddy
+        - image: ghcr.io/bluesky-social/pds:0.4
+          name: bluesky-pds
+          envFrom:
+            - configMapRef: 
+                name: bluesky-cm
+          env:
+            - name: PDS_ADMIN_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: bluesky-secret
+                  key: adminPassword
+            - name: PDS_JWT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: bluesky-secret
+                  key: jwtSecret
+            - name: PDS_REPO_SIGNING_KEY_K256_PRIVATE_KEY_HEX
+              valueFrom:
+                secretKeyRef:
+                  name: bluesky-secret
+                  key: repoSigningKey
+            - name: PDS_PLC_ROTATION_KEY_K256_PRIVATE_KEY_HEX
+              valueFrom:
+                secretKeyRef:
+                  name: bluesky-secret
+                  key: rotationKey
+          volumeMounts:
+            - mountPath: /pds
+              name: bluesky-pds-datadir
+              subPath: bluesky-pds
+        # - image: containrrr/watchtower:latest
+        #   name: watchtower
+        #   volumeMounts:
+        #     - mountPath: /var/run/docker.sock
+        #       name: bluesky-pds-datadir
+        #       subPath: watchtower
+        #   env:
+        #     - name: TZ
+        #       value: "US/Pacific"
+        #     - name: WATCHTOWER_CLEANUP
+        #       value: "true"
+        #     - name: WATCHTOWER_SCHEDULE 
+        #       value: "@midnight"
+      restartPolicy: Always
+      volumes:
+        - name: bluesky-pds-datadir
+          persistentVolumeClaim:
+            claimName: bluesky-pds
