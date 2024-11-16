@@ -1,10 +1,10 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: bluesky-pds-project
+  name: bluesky-project
   namespace: argocd
 spec:
-  project: bluesky-pds-project
+  project: bluesky-project
   sources:
     - repoURL: https://github.com/Monroeshindelar/kubernetes-manifests.git
       targetRevision: HEAD
