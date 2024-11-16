@@ -783,7 +783,7 @@ grafana.ini:
     url: https://grafana.net
   server:
     # domain: "{{ if (and .Values.ingress.enabled .Values.ingress.hosts) }}{{ .Values.ingress.hosts | first }}{{ else }}''{{ end }}"
-    root_url: grafana.jevn.sex
+    root_url: "https://grafana.jevn.sex/"
 ## grafana Authentication can be enabled with the following values on grafana.ini
 # server:
       # The full public facing url you use in browser, used for redirects and emails
