@@ -1,18 +1,24 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: bluesky
+  name: jellyfin
   namespace: argocd
 spec:
-  project: bluesky-project
+  project: media-project
   sources:
+    - chart: jellyfin
+      repoURL: https://jellyfin.github.io/jellyfin-helm
+      targetRevision: 2.1.0
+      helm:
+        valueFiles:
+          - $git/jellyfin/charts/values.yaml
     - repoURL: https://github.com/Monroeshindelar/kubernetes-manifests.git
       targetRevision: HEAD
-      path: bluesky-pds
+      path: jellyfin
       ref: git
   destination:
     server: "https://kubernetes.default.svc"
-    namespace: bluesky
+    namespace: media
   syncPolicy:
     automated:
       prune: true
