@@ -50,7 +50,6 @@ spec:
           volumeMounts:
             - mountPath: /pds
               name: bluesky-pds-datadir
-              subPath: bluesky-pds
       restartPolicy: Always
       volumes:
         - name: bluesky-pds-datadir
