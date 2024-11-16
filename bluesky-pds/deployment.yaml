@@ -18,14 +18,11 @@ spec:
         app: bluesky-pds
     spec:
       containers:
-        - image: caddy:2
-          name: caddy
-          volumeMounts:
-            - mountPath: /
-              name: bluesky-pds-datadir
-              subPath: caddy
         - image: ghcr.io/bluesky-social/pds:0.4
           name: bluesky-pds
+          ports:
+            - name: pds
+              containerPort: 3000
           envFrom:
             - configMapRef: 
                 name: bluesky-cm
@@ -54,19 +51,6 @@ spec:
             - mountPath: /pds
               name: bluesky-pds-datadir
               subPath: bluesky-pds
-        # - image: containrrr/watchtower:latest
-        #   name: watchtower
-        #   volumeMounts:
-        #     - mountPath: /var/run/docker.sock
-        #       name: bluesky-pds-datadir
-        #       subPath: watchtower
-        #   env:
-        #     - name: TZ
-        #       value: "US/Pacific"
-        #     - name: WATCHTOWER_CLEANUP
-        #       value: "true"
-        #     - name: WATCHTOWER_SCHEDULE 
-        #       value: "@midnight"
       restartPolicy: Always
       volumes:
         - name: bluesky-pds-datadir

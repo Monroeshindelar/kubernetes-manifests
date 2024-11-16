@@ -1,0 +1,20 @@
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: bluesky-pds
+  namespace: bluesky
+  labels:
+    app.kubernetes.io/instance: traefik-networking
+    app.kubernetes.io/name: traefik
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - kind: Rule
+      match: Host(`bsky.jevn.sex`)
+      priority: 10
+      services:
+        - name: bluesky-pds
+          port: 3000
+  tls:
+    certResolver: porkbun

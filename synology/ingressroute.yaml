@@ -8,7 +8,6 @@ metadata:
   namespace: filesystem
 spec:
   entryPoints:
-  - web
   - websecure
   routes:
   - kind: Rule
@@ -18,12 +17,12 @@ spec:
       name: synology-service
       namespace: filesystem
       port: 5000
-  - kind: Rule
-    match: Host(`qbt.jevn.sex`)
-    services:
-    - kind: Service
-      name: synology-service
-      namespace: filesystem
-      port: 9865
+  # - kind: Rule
+  #   match: Host(`qbt.jevn.sex`)
+  #   services:
+  #   - kind: Service
+  #     name: synology-service
+  #     namespace: filesystem
+  #     port: 9865
   tls:
     certResolver: porkbun
