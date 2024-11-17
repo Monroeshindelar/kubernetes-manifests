@@ -4,7 +4,7 @@ FROM ubuntu:18.04
 # set the github runner version
 ARG RUNNER_VERSION="2.320.0"
 
-ARG ARCH="arm64"
+ARG ARCH="x64"
 
 # update the base packages and add a non-sudo user
 RUN apt-get update -y && apt-get upgrade -y && useradd -m docker
@@ -12,7 +12,19 @@ RUN apt-get update -y && apt-get upgrade -y && useradd -m docker
 # install python and the packages the your code depends on along with jq so we can parse JSON
 # add additional packages as necessary
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
-    curl jq build-essential libssl-dev libffi-dev python3 python3-venv python3-dev python3-pip
+    curl jq build-essential libssl-dev libffi-dev python3 python3-venv python3-dev python3-pip ca-certificates
+
+RUN install -m 0755 -d /etc/apt/keyrings && \
+    curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc && \
+    chmod a+r /etc/apt/keyrings/docker.asc
+
+RUN echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
+    $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
+    tee /etc/apt/sources.list.d/docker.list > /dev/null
+
+RUN apt-get update
+
+RUN apt-get install docker-ce docker-ce-cli containerd.io -y
 
 # cd into the user directory, download and unzip the github actions runner
 RUN cd /home/docker && mkdir actions-runner && cd actions-runner \
