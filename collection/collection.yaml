@@ -13,8 +13,9 @@ spec:
       - envFrom:
         - configMapRef:
             name: collection-cm
-        image: monroeshindelar/collection:main-58a9ddf
+        image: monroeshindelar/collection:main-1eb359d
         imagePullPolicy: IfNotPresent
+        name: collection
         ports:
         - containerPort: 8080
           protocol: TCP
