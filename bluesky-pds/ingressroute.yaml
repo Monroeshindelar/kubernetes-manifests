@@ -16,5 +16,11 @@ spec:
       services:
         - name: bluesky-pds
           port: 3000
+    - kind: Rule
+      match: Host(`goldbar.jevn.sex`)
+      priority: 10
+      services:
+        - name: bluesky-pds
+          port: 3000
   tls:
     certResolver: porkbun

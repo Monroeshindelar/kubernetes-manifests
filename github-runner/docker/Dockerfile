@@ -1,5 +1,5 @@
 # base
-FROM ubuntu:18.04
+FROM ubuntu:latest
 
 # set the github runner version
 ARG RUNNER_VERSION="2.320.0"
@@ -24,7 +24,7 @@ RUN echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/doc
 
 RUN apt-get update
 
-RUN apt-get install docker-ce docker-ce-cli containerd.io -y
+RUN apt-get install docker-ce docker-ce-cli containerd.io npm nodejs -y && npm install --global yarn
 
 # cd into the user directory, download and unzip the github actions runner
 RUN cd /home/docker && mkdir actions-runner && cd actions-runner \
