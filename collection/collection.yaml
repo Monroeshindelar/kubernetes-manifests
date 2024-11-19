@@ -1,0 +1,81 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: collection
+  name: collection
+  namespace: collection
+spec:
+  replicas: 1
+  template:
+    spec:
+      containers:
+      - envFrom:
+        - configMapRef:
+            name: collection-cm
+        image: monroeshindelar/collection:main-2b303df
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8080
+          protocol: TCP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: collection
+  name: collection-svc
+  namespace: collection
+spec:
+  ports:
+  - name: service
+    port: 8080
+    protocol: TCP
+    targetPort: 8080
+  type: ClusterIP
+---
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  labels:
+    app: collection
+    app.kubernetes.io/instance: traefik-networking
+    app.kubernetes.io/name: traefik
+  namespace: collection
+name: collection-ingress
+spec:
+  entryPoints:
+  - websecure
+  routes:
+  - kind: Rule
+    match: Host(`collection.jevn.sex`)
+    priority: 10
+    services:
+    - name: collection-svc
+      port: 8080
+  tls:
+    certResolver: porkbun
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  labels:
+    app: collection
+  name: collection-pvc
+  namespace: collection
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 50Gi
+---
+apiVersion: v1
+data:
+  TEST: "1"
+kind: ConfigMap
+metadata:
+  labels:
+    app: collection
+  name: collection-cm
+  namespace: collection
