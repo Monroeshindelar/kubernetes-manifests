@@ -7,6 +7,10 @@ metadata:
   namespace: collection
 spec:
   replicas: 1
+  selector:
+    matchLabels:
+      labels:
+        app: collection
   template:
     metadata:
       labels:
@@ -16,7 +20,7 @@ spec:
       - envFrom:
         - configMapRef:
             name: collection-cm
-        image: monroeshindelar/collection:main-8469b97d0d61
+        image: monroeshindelar/collection:main-8627da7284c7
         imagePullPolicy: IfNotPresent
         name: collection
         ports:
