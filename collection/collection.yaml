@@ -13,7 +13,7 @@ spec:
       - envFrom:
         - configMapRef:
             name: collection-cm
-        image: monroeshindelar/collection:main-2b303df
+        image: monroeshindelar/collection:main-58a9ddf
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 8080
@@ -41,8 +41,8 @@ metadata:
     app: collection
     app.kubernetes.io/instance: traefik-networking
     app.kubernetes.io/name: traefik
+  name: collection-ingress
   namespace: collection
-name: collection-ingress
 spec:
   entryPoints:
   - websecure
