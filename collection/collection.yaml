@@ -19,7 +19,7 @@ spec:
       - envFrom:
         - configMapRef:
             name: collection-cm
-        image: monroeshindelar/collection:main-a0a5175
+        image: monroeshindelar/collection:main-05cf594
         imagePullPolicy: IfNotPresent
         name: collection
         ports:
@@ -76,6 +76,10 @@ spec:
     port: 8080
     protocol: TCP
     targetPort: 8080
+  - name: db
+    port: 5432
+    protocol: TCP
+    targetPort: 5432
   type: ClusterIP
 ---
 apiVersion: traefik.io/v1alpha1
@@ -116,7 +120,7 @@ spec:
 ---
 apiVersion: v1
 data:
-  TEST: "1"
+  POSTGRES_HOST: jdbc:postgresql://collection-svc.collection.svc.cluster.local
 kind: ConfigMap
 metadata:
   labels:
