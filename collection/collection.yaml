@@ -19,7 +19,7 @@ spec:
       - envFrom:
         - configMapRef:
             name: collection-cm
-        image: monroeshindelar/collection:main-2211042
+        image: monroeshindelar/collection:main-05b18cb
         imagePullPolicy: IfNotPresent
         name: collection
         ports:
