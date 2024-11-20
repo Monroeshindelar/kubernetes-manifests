@@ -50,49 +50,48 @@ spec:
         - name: docker-sock
           persistentVolumeClaim:
             claimName: docker-sock-pvc
-
----
-apiVersion: apps/v1
-kind: DaemonSet
-metadata:
-  name: github-runner-arm64
-  namespace: github-runner
-  labels:
-    app: github-runner-arm64
-spec:
-  selector:
-    matchLabels:
-      name: github-runner-arm64
-  template:
-    metadata:
-      labels:
-        name: github-runner-arm64
-    spec:
-      affinity:
-        nodeAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-            nodeSelectorTerms:
-            - matchExpressions:
-              - key: kubernetes.io/arch
-                operator: In
-                values:
-                - arm64
-      tolerations:
-      - key: node-role.kubernetes.io/control-plane
-        operator: Exists
-        effect: NoSchedule
-      - key: node-role.kubernetes.io/master
-        operator: Exists
-        effect: NoSchedule
-      containers:
-      - name: runner
-        image: monroeshindelar/runner-arm64:latest
-        envFrom:
-          - configMapRef: 
-              name: github-runner-cm
-        env:
-          - name: ACCESS_TOKEN
-            valueFrom:
-              secretKeyRef:
-                name: github-runner-secret
-                key: accessToken
+# ---
+# apiVersion: apps/v1
+# kind: DaemonSet
+# metadata:
+#   name: github-runner-arm64
+#   namespace: github-runner
+#   labels:
+#     app: github-runner-arm64
+# spec:
+#   selector:
+#     matchLabels:
+#       name: github-runner-arm64
+#   template:
+#     metadata:
+#       labels:
+#         name: github-runner-arm64
+#     spec:
+#       affinity:
+#         nodeAffinity:
+#           requiredDuringSchedulingIgnoredDuringExecution:
+#             nodeSelectorTerms:
+#             - matchExpressions:
+#               - key: kubernetes.io/arch
+#                 operator: In
+#                 values:
+#                 - arm64
+#       tolerations:
+#       - key: node-role.kubernetes.io/control-plane
+#         operator: Exists
+#         effect: NoSchedule
+#       - key: node-role.kubernetes.io/master
+#         operator: Exists
+#         effect: NoSchedule
+#       containers:
+#       - name: runner
+#         image: monroeshindelar/runner-arm64:latest
+#         envFrom:
+#           - configMapRef: 
+#               name: github-runner-cm
+#         env:
+#           - name: ACCESS_TOKEN
+#             valueFrom:
+#               secretKeyRef:
+#                 name: github-runner-secret
+#                 key: accessToken
