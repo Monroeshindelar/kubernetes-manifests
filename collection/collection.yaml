@@ -19,7 +19,7 @@ spec:
       - envFrom:
         - configMapRef:
             name: collection-cm
-        image: monroeshindelar/collection:main-05cf594
+        image: monroeshindelar/collection:main-2211042
         imagePullPolicy: IfNotPresent
         name: collection
         ports:
@@ -120,7 +120,7 @@ spec:
 ---
 apiVersion: v1
 data:
-  POSTGRES_HOST: jdbc:postgresql://collection-svc.collection.svc.cluster.local
+  POSTGRES_HOST: jdbc:postgresql://collection-svc.collection.svc.cluster.local/collection
 kind: ConfigMap
 metadata:
   labels:
