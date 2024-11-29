@@ -7,9 +7,6 @@ metadata:
   namespace: bluesky
 spec:
   replicas: 1
-  selector:
-    matchLabels:
-      app: bluesky-pds
   strategy:
     type: Recreate
   template:

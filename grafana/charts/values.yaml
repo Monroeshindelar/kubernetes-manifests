@@ -784,22 +784,24 @@ grafana.ini:
   server:
     # domain: "{{ if (and .Values.ingress.enabled .Values.ingress.hosts) }}{{ .Values.ingress.hosts | first }}{{ else }}''{{ end }}"
     root_url: "https://grafana.jevn.sex/"
+  
 ## grafana Authentication can be enabled with the following values on grafana.ini
 # server:
       # The full public facing url you use in browser, used for redirects and emails
   # root_url: grafana.jevn.sex
  # https://grafana.com/docs/grafana/latest/auth/github/#enable-github-in-grafana
- # auth.github:
- #    enabled: false
- #    allow_sign_up: false
- #    scopes: user:email,read:org
- #    auth_url: https://github.com/login/oauth/authorize
- #    token_url: https://github.com/login/oauth/access_token
- #    api_url: https://api.github.com/user
- #    team_ids:
- #    allowed_organizations:
- #    client_id:
- #    client_secret:
+  auth.github:
+      # enabled: false
+      allow_sign_up: false
+      scopes: user:email,read:org
+      # auth_url: https://github.com/login/oauth/authorize
+      # token_url: https://github.com/login/oauth/access_token
+      # api_url: https://api.github.com/user
+      team_ids: 
+      allowed_organizations: [ "monroe-shindelar-org" ]
+      role_attribute_path: "contains(groups[*], '@monroe-shindelar-org/first-among-equals') && 'Editor' || 'Viewer'"
+      # client_id:
+      # client_secret:
 ## LDAP Authentication can be enabled with the following values on grafana.ini
 ## NOTE: Grafana will fail to start if the value for ldap.toml is invalid
   # auth.ldap:
