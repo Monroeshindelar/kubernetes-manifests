@@ -8,7 +8,7 @@ metadata:
     - resources-finalizer.argocd.argoproj.io
 spec:
   # Project description
-  description: Project for deployments relating to resource monitoring
+  description: Project for Minecraft server
   destinations:
   - namespace: minecraft-server
     server: https://kubernetes.default.svc
