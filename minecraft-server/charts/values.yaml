@@ -291,7 +291,10 @@ minecraftServer:
 
   # List with URLs and paths to jar files, additionally may be a directory with jars
   # This works for both mods and plugins depending on server type
-  modUrls: []
+  modUrls: [
+    "/data/mods/f.jar",
+    "/data/mods/j.jar"
+  ]
   pluginUrls: []
 
   # A list of Spigot resources/plugins IDs to download.
