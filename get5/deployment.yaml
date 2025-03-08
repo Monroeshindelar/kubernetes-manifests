@@ -1,0 +1,57 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: get5
+  name: g5v
+  namespace: get5
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: get5
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: get5
+    spec:
+      containers:
+        - image: monroeshindelar/g5v:latest
+          name: g5v
+          ports:
+            - name: g5v
+              containerPort: 80
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: get5
+  name: g5api
+  namespace: get5
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: get5
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: get5
+    spec:
+      containers:
+        - image: monroeshindelar/g5api:latest
+          imagePullPolicy: Always
+          name: g5api
+          envFrom:
+            - configMapRef:
+                name: g5api-cm
+            - secretRef:
+                name: g5api-secret
+          ports:
+            - name: g5api
+              containerPort: 3301

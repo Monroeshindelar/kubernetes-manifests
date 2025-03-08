@@ -1,0 +1,42 @@
+---
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: g5v
+  namespace: get5
+  labels:
+    app.kubernetes.io/instance: traefik-networking
+    app.kubernetes.io/name: traefik
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - kind: Rule
+      match: Host(`get5.jevn.sex`)
+      priority: 10
+      services:
+        - name: g5v
+          port: 80
+  tls:
+    certResolver: porkbun
+---
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: g5api
+  namespace: get5
+  labels:
+    app.kubernetes.io/instance: traefik-networking
+    app.kubernetes.io/name: traefik
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - kind: Rule
+      match: Host(`g5api.jevn.sex`)
+      priority: 10
+      services:
+        - name: g5api
+          port: 3301
+  tls:
+    certResolver: porkbun

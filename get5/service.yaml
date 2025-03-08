@@ -1,0 +1,46 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: get5
+  namespace: get5
+  name: g5v
+spec:
+  ports:
+  - name: g5v
+    port: 80
+    targetPort: 80
+  selector:
+    app: get5
+  type: LoadBalancer
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: get5
+  namespace: get5
+  name: g5api
+spec:
+  ports:
+  - name: g5api
+    port: 3301
+    targetPort: 3301
+  selector:
+    app: get5
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: get5
+  namespace: get5
+  name: g5-mysql
+spec:
+  ports:
+  - name: mysql
+    port: 3306
+    targetPort: 3306
+  selector:
+    app: get5
+  clusterIP: None
