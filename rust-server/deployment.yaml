@@ -23,6 +23,8 @@ spec:
           envFrom:
             - configMapRef: 
                 name: rust-cm
+            - secretRef:
+                name: rust-server-secret
           env:
             - name: RUST_RCON_PASSWORD
               valueFrom:
