@@ -19,6 +19,7 @@ spec:
     spec:
       containers:
         - image: monroeshindelar/g5v:latest
+          imagePullPolicy: Always
           name: g5v
           ports:
             - name: g5v
@@ -28,20 +29,20 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: get5
+    app: g5api
   name: g5api
   namespace: get5
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: get5
+      app: g5api
   strategy:
     type: Recreate
   template:
     metadata:
       labels:
-        app: get5
+        app: g5api
     spec:
       containers:
         - image: monroeshindelar/g5api:latest
