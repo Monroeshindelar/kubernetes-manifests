@@ -25,12 +25,6 @@ spec:
                 name: rust-cm
             - secretRef:
                 name: rust-server-secret
-          env:
-            - name: RUST_RCON_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: rust-server-secrets
-                  key: rconPassword
           ports:
             - name: server
               containerPort: 28015
