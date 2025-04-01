@@ -19,7 +19,7 @@ spec:
       - envFrom:
         - configMapRef:
             name: collection-cm
-        image: monroeshindelar/collection:main-05b18cb
+        image: monroeshindelar/collection:main-11ed5e4
         imagePullPolicy: IfNotPresent
         name: collection
         ports:
@@ -41,7 +41,7 @@ spec:
   template:
     metadata:
       labels:
-        app: collection
+        app: collection-psql
     spec:
       containers:
       - envFrom:
@@ -59,9 +59,9 @@ spec:
         - mountPath: /var/lib/postgresql/data
           name: collection-psql-data
       volumes:
-      - PersistentVolumeClaim:
+      - name: collection-psql-data
+        persistentVolumeClaim:
           claimName: collection-psql
-        name: collection-psql-data
 ---
 apiVersion: v1
 kind: Service
@@ -76,6 +76,17 @@ spec:
     port: 8080
     protocol: TCP
     targetPort: 8080
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: collection-psql
+  name: collection-svc-psql
+  namespace: collection
+spec:
+  ports:
   - name: db
     port: 5432
     protocol: TCP
@@ -108,7 +119,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   labels:
-    app: collection
+    app: collection-psql
   name: collection-psql
   namespace: collection
 spec:
