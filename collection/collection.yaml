@@ -19,7 +19,7 @@ spec:
       - envFrom:
         - configMapRef:
             name: collection-cm
-        image: monroeshindelar/collection:main-11ed5e4
+        image: monroeshindelar/collection:main-cb16747
         imagePullPolicy: IfNotPresent
         name: collection
         ports:
@@ -30,7 +30,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: collection
+    app: collection-psql
   name: collection-psql
   namespace: collection
 spec:
