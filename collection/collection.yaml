@@ -19,7 +19,7 @@ spec:
       - envFrom:
         - configMapRef:
             name: collection-cm
-        image: monroeshindelar/collection:main-f7effc9
+        image: monroeshindelar/collection:main-4432428
         imagePullPolicy: IfNotPresent
         name: collection
         ports:
@@ -58,6 +58,7 @@ spec:
         volumeMounts:
         - mountPath: /var/lib/postgresql/data
           name: collection-psql-data
+          subPath: data
       volumes:
       - name: collection-psql-data
         persistentVolumeClaim:
