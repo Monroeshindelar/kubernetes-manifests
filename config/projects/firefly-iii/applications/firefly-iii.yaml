@@ -12,6 +12,10 @@ spec:
       helm:
         valueFiles:
           - $git/firefly-iii/charts/values.yaml
+    - repoURL: https://github.com/Monroeshindelar/kubernetes-manifests.git
+      targetRevision: HEAD
+      path: firefly-iii/resources
+      ref: git
   destination:
     server: "https://kubernetes.default.svc"
     namespace: firefly-iii
