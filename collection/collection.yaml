@@ -2,6 +2,34 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
+    app: collection-ui
+  name: collection-ui
+  namespace: collection
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: collection-ui
+  template:
+    metadata:
+      labels:
+        app: collection-ui
+    spec:
+      containers:
+      - envFrom:
+        - configMapRef:
+            name: collection-ui-cm
+        image: monroeshindelar/collection-ui:latest
+        imagePullPolicy: Always
+        name: collection-ui
+        ports:
+        - containerPort: 3000
+          protocol: TCP
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
     app: collection
   name: collection
   namespace: collection
@@ -19,7 +47,7 @@ spec:
       - envFrom:
         - configMapRef:
             name: collection-cm
-        image: monroeshindelar/collection:main-05b18cb
+        image: monroeshindelar/collection:main-ffae24e
         imagePullPolicy: IfNotPresent
         name: collection
         ports:
@@ -30,18 +58,18 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: collection
+    app: collection-psql
   name: collection-psql
   namespace: collection
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: collection
+      app: collection-psql
   template:
     metadata:
       labels:
-        app: collection
+        app: collection-psql
     spec:
       containers:
       - envFrom:
@@ -57,11 +85,32 @@ spec:
           protocol: TCP
         volumeMounts:
         - mountPath: /var/lib/postgresql/data
+          subPath: data
+          name: collection-psql-data
+        - mountPath: /docker-entrypoint-initdb.d
+          subPath: initdb
           name: collection-psql-data
       volumes:
-      - PersistentVolumeClaim:
+      - persistentVolumeClaim:
           claimName: collection-psql
         name: collection-psql-data
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: collection-ui
+  name: collection-ui-svc
+  namespace: collection
+spec:
+  ports:
+  - name: service
+    port: 3000
+    protocol: TCP
+    targetPort: 3000
+  type: ClusterIP
+  selector:
+    app: collection-ui
 ---
 apiVersion: v1
 kind: Service
@@ -76,17 +125,32 @@ spec:
     port: 8080
     protocol: TCP
     targetPort: 8080
+  type: ClusterIP
+  selector:
+    app: collection
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: collection-psql
+  name: collection-psql-svc
+  namespace: collection
+spec:
+  ports:
   - name: db
     port: 5432
     protocol: TCP
     targetPort: 5432
   type: ClusterIP
+  selector:
+    app: collection-psql
 ---
 apiVersion: traefik.io/v1alpha1
 kind: IngressRoute
 metadata:
   labels:
-    app: collection
+    app: collection-ui
     app.kubernetes.io/instance: traefik-networking
     app.kubernetes.io/name: traefik
   name: collection-ingress
@@ -99,6 +163,12 @@ spec:
     match: Host(`collection.jevn.sex`)
     priority: 10
     services:
+    - name: collection-ui-svc
+      port: 3000
+  - kind: Rule
+    match: Host(`collection.jevn.sex`) && PathPrefix(`/api`)
+    priority: 10
+    services:
     - name: collection-svc
       port: 8080
   tls:
@@ -108,7 +178,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   labels:
-    app: collection
+    app: collection-psql
   name: collection-psql
   namespace: collection
 spec:
@@ -120,7 +190,18 @@ spec:
 ---
 apiVersion: v1
 data:
-  POSTGRES_HOST: jdbc:postgresql://collection-svc.collection.svc.cluster.local/collection
+  REACT_APP_API_BASE_URL: "https://collection.jevn.sex/api"
+  WDS_SOCKET_PORT: "0"
+kind: ConfigMap
+metadata:
+  labels:
+    app: collection-ui
+  name: collection-ui-cm
+  namespace: collection
+---
+apiVersion: v1
+data:
+  POSTGRES_HOST: jdbc:postgresql://collection-psql-svc.collection.svc.cluster.local/collection
 kind: ConfigMap
 metadata:
   labels:
@@ -134,6 +215,6 @@ data:
 kind: ConfigMap
 metadata:
   labels:
-    app: collection
+    app: collection-psql
   name: collection-psql-cm
   namespace: collection
