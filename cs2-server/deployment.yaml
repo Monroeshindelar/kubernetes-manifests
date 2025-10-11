@@ -18,7 +18,7 @@ spec:
         app: cs2-server
     spec:
       containers:
-        - image: monroeshindelar/cs2-server
+        - image: joedwards32/cs2
           name: cs2-dedicated
           envFrom:
             - configMapRef: 
