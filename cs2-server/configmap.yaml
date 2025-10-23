@@ -22,7 +22,6 @@ data:
   CS2_SERVERNAME: "goldserver"
   CS2_SERVER_HIBERNATE: "0"
   CS2_STARTMAP: "de_inferno"
-  DEBUG: "1"
   PUID: "1027"
   PGID: "100"
   TV_AUTORECORD: "0"
@@ -30,4 +29,5 @@ data:
   TV_ENABLE: "0"
   TV_MAXRATE: "0"
   TV_PORT: "27017"
+
 
