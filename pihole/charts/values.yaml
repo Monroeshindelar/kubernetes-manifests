@@ -130,8 +130,8 @@ serviceWeb:
 
   # -- Annotations for the DHCP service
   annotations:
-    metallb.universe.tf/address-pool: network-services
-    metallb.universe.tf/allow-shared-ip: pihole-svc
+    # metallb.universe.tf/address-pool: network-services
+    # metallb.universe.tf/allow-shared-ip: pihole-svc
 
   # -- Labels for the web interface service
   extraLabels:
