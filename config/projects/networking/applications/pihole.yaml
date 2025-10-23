@@ -8,7 +8,7 @@ spec:
   sources:
     - chart: pihole
       repoURL: https://mojo2600.github.io/pihole-kubernetes/
-      targetRevision: 2.24.0
+      targetRevision: 2.34.0
       helm:
         valueFiles:
           - $git/pihole/charts/values.yaml
@@ -21,4 +21,5 @@ spec:
     namespace: networking
   syncPolicy:
     automated:
+
       prune: true
