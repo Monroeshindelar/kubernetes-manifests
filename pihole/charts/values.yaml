@@ -57,7 +57,7 @@ serviceDns:
   # -- Annotations for the DNS service
   annotations: {}
     # metallb.universe.tf/address-pool: network-services
-    # metallb.universe.tf/allow-shared-ip: pihole-svc
+    metallb.universe.tf/allow-shared-ip: pihole-svc
 
   # -- Labels for the DNS service
   extraLabels:
