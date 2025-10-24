@@ -1,7 +1,13 @@
 nfs:
   server: 10.2.0.11
   path: /volume1/containers
-  reclaimPolicy: Retain 
+  reclaimPolicy: Retain
+  mountOptions:
+    - defaults
+    - vers=3
+    - nconnect=16
+    - timeo=600
+    - retrans=60
 storageClass:
   reclaimPolicy: Retain
   annotations:
