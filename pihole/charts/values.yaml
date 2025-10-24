@@ -282,9 +282,9 @@ extraEnvVarsSecret: {}
   #   key: secret-key
 
 # -- default upstream DNS 1 server to use
-DNS1: "8.8.8.8"
+DNS1: "10.0.0.159#5335"
 # -- default upstream DNS 2 server to use
-DNS2: "8.8.4.4"
+# DNS2: "8.8.4.4"
 
 antiaff:
   # -- set to true to enable antiaffinity (example: 2 pihole DNS in the same cluster)
@@ -532,7 +532,7 @@ monitoring:
       #  memory: 128Mi
 
 podDnsConfig:
-  enabled: false
+  enabled: true
   policy: "None"
   nameservers:
     - 127.0.0.1
