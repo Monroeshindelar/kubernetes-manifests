@@ -119,7 +119,7 @@ readinessProbe:
   failureThreshold: 3
 
 service:
-  type: ClusterIP
+  type: LoadBalancer
   # due to https://ben-lab.github.io/kubernetes-UDP-TCP-bug-same-port/ annoce deployed, ports will never change
   # so it's recomended to enable both, you need udp due to coredns forward healt-checks are udp only
   tcp:
@@ -151,7 +151,7 @@ podDisruptionBudget:
 #  maxUnavailable: 1
 #  annotations: {}
 
-replicaCount: 3
+replicaCount: 2
 
 autoscaling:
   enabled: false
