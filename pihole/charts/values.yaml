@@ -535,8 +535,7 @@ podDnsConfig:
   enabled: true
   policy: "None"
   nameservers:
-    - 127.0.0.1
-    - 8.8.8.8
+    - 10.0.0.159#5335
 
 # -- configure a Pod Disruption Budget
 podDisruptionBudget:
