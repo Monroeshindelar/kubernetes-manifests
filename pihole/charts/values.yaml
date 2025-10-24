@@ -532,10 +532,11 @@ monitoring:
       #  memory: 128Mi
 
 podDnsConfig:
-  enabled: true
+  enabled: false
   policy: "None"
   nameservers:
-    - 10.0.0.159#5335
+    - 127.0.0.1
+    - 8.8.8.8
 
 # -- configure a Pod Disruption Budget
 podDisruptionBudget:
