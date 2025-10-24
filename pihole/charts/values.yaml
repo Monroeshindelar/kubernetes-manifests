@@ -340,7 +340,8 @@ dnsmasq:
   # - server=/bar.foo/192.168.178.11
 
   # -- Add custom dns entries to override the dns resolution. All lines will be added to the pihole dnsmasq configuration.
-  customDnsEntries: []
+  customDnsEntries:
+    - address=10.0.0.159#5335
   # - address=/foo.bar/192.168.178.10
   # - address=/bar.foo/192.168.178.11
 
