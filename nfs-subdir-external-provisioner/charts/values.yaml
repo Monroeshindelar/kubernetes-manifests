@@ -4,10 +4,13 @@ nfs:
   reclaimPolicy: Retain
   mountOptions:
     - defaults
-    - vers=3
+    - nfsvers=4.1
     - nconnect=16
     - timeo=600
     - retrans=60
+    - async
+    - rsize=131072
+    - wsize=131072
 storageClass:
   reclaimPolicy: Retain
   annotations:
