@@ -11,6 +11,8 @@ nfs:
     - async
     - rsize=131072
     - wsize=131072
+    - noatime
+    - nodiratime
 storageClass:
   reclaimPolicy: Retain
   annotations:
