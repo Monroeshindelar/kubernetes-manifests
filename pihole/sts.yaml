@@ -1,0 +1,84 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: pihole
+  namespace: pihole
+spec:
+  serviceName: pihole-headless
+  replicas: 2
+  selector:
+    matchLabels: 
+      app: pihole
+  template:
+    metadata:
+      labels: 
+        app: pihole
+    spec:
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchLabels: 
+                  app: pihole
+              topologyKey: kubernetes.io/hostname
+      containers:
+        - name: pihole
+          image: pihole/pihole:latest
+          envFrom:
+            - configMapRef: 
+                name: pihole-env
+          env:
+            - name: FTLCONF_webserver_api_password
+              valueFrom:
+                secretKeyRef:
+                  key: adminPassword
+                  name: pihole-secret
+          ports:
+            - containerPort: 80
+              name: http
+            - containerPort: 443
+              name: https
+            - containerPort: 53 
+              name: dns-udp
+              protocol: UDP
+            - containerPort: 53
+              name: dns-tcp
+              protocol: TCP
+          readinessProbe: 
+            tcpSocket:
+              port: 53
+            initialDelaySeconds: 15
+            periodSeconds: 10
+            timeoutSeconds: 3
+            failureThreshold: 3
+          livenessProbe:
+            httpGet:
+              path: /admin
+              port: http
+              scheme: HTTP
+            initialDelaySeconds: 60
+            periodSeconds: 30
+            timeoutSeconds: 5
+            failureThreshold: 6
+          volumeMounts:
+            - name: pihole-config
+              mountPath: /etc/pihole
+            - name: custom-dnsmasq
+              mountPath: /etc/dnsmasq.d/02-custom.conf
+              subPath: 02-custom.conf
+            - name: custom-dnsmasq
+              mountPath: /etc/addn-hosts
+              subPath: addn-hosts
+      volumes:
+        - name: custom-dnsmasq
+          configMap:
+            name: pihole-custom-dnsmasq
+            defaultMode: 420
+  volumeClaimTemplates:
+    - metadata:
+        name: pihole-config
+      spec:
+        accessModes: ["ReadWriteOnce"]
+        resources:
+          requests: 
+            storage: 1Gi
