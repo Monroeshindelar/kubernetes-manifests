@@ -3,14 +3,9 @@ nfs:
   path: /volume1/containers
   reclaimPolicy: Retain
   mountOptions:
-    - defaults
     - nfsvers=4.1
-    - nconnect=16
-    - timeo=600
-    - retrans=60
-    - async
-    - rsize=131072
-    - wsize=131072
+    - rsize=1048576
+    - wsize=1048576
     - noatime
     - nodiratime
 storageClass:
