@@ -1,5 +1,5 @@
 nfs:
-  server: 10.2.0.11
+  server: 10.4.0.11
   path: /volume1/containers
   reclaimPolicy: Retain
   mountOptions:
