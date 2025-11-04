@@ -16,7 +16,7 @@ metadata:
 apiVersion: v1
 data:
   FTLCONF_dns_listeningMode: all
-  FTLCONF_dns_upstreams: 10.0.0.154#5335
+  # FTLCONF_dns_upstreams: 10.0.0.154#5335,8.8.8.8
   PIHOLE_GID: '100'
   PIHOLE_UID: '1024'
   TZ: America/Los_Angeles
