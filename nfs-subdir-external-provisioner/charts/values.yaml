@@ -1,9 +1,10 @@
 nfs:
-  server: 10.4.0.11
+  server: 10.0.0.111
   path: /volume1/containers
   reclaimPolicy: Retain
   mountOptions:
     - nfsvers=4.1
+    - nconnect=16
     - rsize=1048576
     - wsize=1048576
     - noatime
