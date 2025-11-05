@@ -1,0 +1,17 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: game-server-project
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  description: Project for game servers
+  destinations:
+  - namespace: cs
+    server: https://kubernetes.default.svc
+  sourceRepos:
+  - 'https://github.com/Monroeshindelar/kubernetes-manifests'
+  clusterResourceWhitelist:
+  - group: '*'
+    kind: '*'

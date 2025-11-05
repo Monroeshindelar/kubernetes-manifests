@@ -3,7 +3,6 @@ kind: AppProject
 metadata:
   name: networking-project
   namespace: argocd
-  # Finalizer that ensures that project is not deleted until it is not referenced by any application
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
@@ -12,10 +11,10 @@ spec:
   destinations:
   - namespace: networking
     server: https://kubernetes.default.svc
-    name: in-cluster
-  # Allow manifests to deploy from any Git repos
+  - namespace: pihole
+    server: https://kubernetes.default.svc
   sourceRepos:
-  - '*'
+  - https://github.com/Monroeshindelar/kubernetes-manifests
   clusterResourceWhitelist:
   - group: '*'
     kind: '*'
