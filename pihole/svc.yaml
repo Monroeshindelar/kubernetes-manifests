@@ -13,27 +13,27 @@ spec:
       targetPort: 80
       name: http
 ---
-apiVersion: v1
-kind: Service
-metadata:
-  labels:
-    app: pihole
-  name: pihole-dhcp
-  namespace: pihole
-spec:
-  externalTrafficPolicy: Local
-  ipFamilies:
-    - IPv4
-  ipFamilyPolicy: SingleStack
-  ports:
-    - name: client-udp
-      port: 67
-      protocol: UDP
-      targetPort: client-udp
-  selector:
-    app: pihole
-  sessionAffinity: None
-  type: NodePort
+#apiVersion: v1
+#kind: Service
+#metadata:
+#  labels:
+#    app: pihole
+#  name: pihole-dhcp
+#  namespace: pihole
+#spec:
+#  externalTrafficPolicy: Local
+#  ipFamilies:
+#    - IPv4
+#  ipFamilyPolicy: SingleStack
+#  ports:
+#    - name: client-udp
+#      port: 67
+#      protocol: UDP
+#      targetPort: client-udp
+#  selector:
+#    app: pihole
+#  sessionAffinity: None
+#  type: NodePort
 ---
 apiVersion: v1
 kind: Service
