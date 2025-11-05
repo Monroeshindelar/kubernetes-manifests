@@ -68,8 +68,14 @@ spec:
           volumeMounts:
             - mountPath: /home/steam/cs2-dedicated/
               name: cs2-server-datadir
+            - mountPath: /home/steam/addons
+              name: cs2-addons
       restartPolicy: Always
       volumes:
         - name: cs2-server-datadir
           persistentVolumeClaim:
             claimName: cs2-server
+        - name: cs2-addons
+          persistentVolumeClaim:
+            claimName: cs2-addons
+
