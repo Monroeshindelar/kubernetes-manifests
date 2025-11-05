@@ -8,7 +8,7 @@ metadata:
 spec:
   description: Project for game servers
   destinations:
-  - namespace: cs
+  - namespace: cs2-server
     server: https://kubernetes.default.svc
   sourceRepos:
   - 'https://github.com/Monroeshindelar/kubernetes-manifests'

@@ -14,7 +14,7 @@ spec:
   - namespace: pihole
     server: https://kubernetes.default.svc
   sourceRepos:
-  - https://github.com/Monroeshindelar/kubernetes-manifests
+    - '*'
   clusterResourceWhitelist:
-  - group: '*'
-    kind: '*'
+    - group: '*'
+      kind: '*'

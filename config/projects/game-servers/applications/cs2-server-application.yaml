@@ -11,7 +11,7 @@ spec:
     path: cs2-server
   destination:
     server: "https://kubernetes.default.svc"
-    namespace: cs
+    namespace: cs2-server
   syncPolicy:
     automated:
       prune: true
