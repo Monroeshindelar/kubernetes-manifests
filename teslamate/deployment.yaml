@@ -75,7 +75,7 @@ kind: Deployment
 metadata:
   labels:
     app: teslamate
-  name: teslamate-grafana
+  name: grafana
   namespace: teslamate
 spec:
   replicas: 1
@@ -98,4 +98,29 @@ spec:
         name: teslamate
         ports:
         - containerPort: 3000
-          protocol: TCP 
+          protocol: TCP
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: teslamate
+  name: mosquitto
+  namespace: teslamate
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: teslamate
+  template:
+    metadata:
+      labels:
+        app: teslamate
+    spec:
+      containers:
+      - image: eclipse-mosquitto:2
+        imagePullPolicy: Always
+        name: mosquito
+        command: ["mosquitto"]
+        args: ["-c", "/mosquitto-no-auth.conf"]
+        

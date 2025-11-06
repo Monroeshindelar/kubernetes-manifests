@@ -36,3 +36,20 @@ spec:
   type: LoadBalancer
   selector:
     app: teslamate
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: mosquitto
+  name: mosquitto-svc
+  namespace: teslamate
+spec:
+  ports:
+  - name: mosquitto
+    port: 1883
+    protocol: TCP
+    targetPort: 1883
+  type: ClusterIP
+  selector:
+    app: mosquitto

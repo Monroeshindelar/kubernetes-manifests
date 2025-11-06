@@ -21,4 +21,4 @@ data:
   DATABASE_USER: teslamate
   DATABASE_NAME: teslamate
   DATABASE_HOST: teslamate-psql-svc.teslamate.svc.cluster.local
-  MQTT_HOST: mosquitto
+  MQTT_HOST: teslamate-svc.teslamate.svc.cluster.local
