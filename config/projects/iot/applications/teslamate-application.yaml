@@ -1,0 +1,17 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: telsamate-application
+  namespace: argocd
+spec:
+  project: iot-project
+  source:
+    repoURL: https://github.com/Monroeshindelar/kubernetes-manifests.git
+    targetRevision: HEAD
+    path: teslamate
+  destination:
+    server: "https://kubernetes.default.svc"
+    namespace: teslamate
+  syncPolicy:
+    automated:
+      prune: true

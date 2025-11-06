@@ -1,19 +1,14 @@
 apiVersion: argoproj.io/v1alpha1
 kind: AppProject
 metadata:
-  name: networking-project
+  name: iot-project
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
-  # Project description
-  description: Project for networking related applications
+  description: Project for iot related applications
   destinations:
-  - namespace: networking
-    server: https://kubernetes.default.svc
-  - namespace: pihole
-    server: https://kubernetes.default.svc
-  - namespace: traefik
+  - namespace: teslamate
     server: https://kubernetes.default.svc
   sourceRepos:
     - '*'

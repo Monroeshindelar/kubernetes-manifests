@@ -1,0 +1,14 @@
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  labels:
+    app: teslamate-psql
+  name: teslamate-psql-pvc
+  namespace: teslamate
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests: 
+      storage: 25Gi

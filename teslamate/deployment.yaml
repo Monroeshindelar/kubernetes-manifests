@@ -1,0 +1,101 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: teslamate-psql
+  name: teslamate-psql
+  namespace: teslamate
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: teslamate-psql
+  template:
+    metadata:
+      labels:
+        app: teslamate-psql
+    spec:
+      containers:
+      - envFrom:
+        - configMapRef:
+            name: teslamate-psql-cm
+        - secretRef:
+            name: teslamate-psql-secret
+        image:  postgres:17-trixie
+        imagePullPolicy: IfNotPresent
+        name: teslamate-psql
+        ports:
+        - containerPort: 5432
+          protocol: TCP
+        volumeMounts:
+        - mountPath: /var/lib/postgresql/data
+          name: teslamate-psql-data
+      volumes:
+        - persistentVolumeClaim:
+            claimName: teslamate-psql-pvc
+          name: teslamate-psql-data
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: teslamate
+  name: teslamate
+  namespace: teslamate
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: teslamate
+  template:
+    metadata:
+      labels:
+        app: teslamate
+    spec:
+      containers:
+      - envFrom:
+        - configMapRef:
+            name: teslamate-cm
+        - secretRef:
+            name: teslamate-secret
+        image: teslamate/teslamate:latest
+        imagePullPolicy: Always
+        name: teslamate
+        ports:
+        - containerPort: 4000
+          protocol: TCP 
+        securityContext:
+          capabilities:
+            drop:
+            - ALL
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: teslamate
+  name: teslamate-grafana
+  namespace: teslamate
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: teslamate
+  template:
+    metadata:
+      labels:
+        app: teslamate
+    spec:
+      containers:
+      - envFrom:
+        - configMapRef:
+            name: teslamate-cm
+        - secretRef:
+            name: teslamate-secret
+        image: teslamate/grafana:latest
+        imagePullPolicy: Always
+        name: teslamate
+        ports:
+        - containerPort: 3000
+          protocol: TCP 
