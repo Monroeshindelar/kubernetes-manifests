@@ -16,6 +16,9 @@ spec:
   - namespace: prometheus
     server: https://kubernetes.default.svc
     name: in-cluster
+  - namespace: teslamate
+    server: https://kubernetes.default.svc
+    name: in-cluster
   # Allow manifests to deploy from any Git repos
   sourceRepos:
   - '*'

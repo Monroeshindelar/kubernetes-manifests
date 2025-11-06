@@ -4,7 +4,7 @@ metadata:
   name: telsamate
   namespace: argocd
 spec:
-  project: iot-project
+  project: monitoring-project
   source:
     repoURL: https://github.com/Monroeshindelar/kubernetes-manifests.git
     targetRevision: HEAD
