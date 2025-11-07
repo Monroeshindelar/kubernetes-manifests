@@ -1,0 +1,26 @@
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: teslamate
+  namespace: teslamate
+  labels:
+    app.kubernetes.io/instance: traefik-networking
+    app.kubernetes.io/name: traefik
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - kind: Rule
+      match: Host(`tesla.monroe.gg`)
+      priority: 10
+      services:
+        - name: teslamate-svc
+          port: 3000
+    - kind: Rule
+      match: Host(`tesla.monroeshindelar.com`)
+      priority: 10
+      services:
+        - name: teslamate-svc
+          port: 3000
+  tls:
+    certResolver: porkbun

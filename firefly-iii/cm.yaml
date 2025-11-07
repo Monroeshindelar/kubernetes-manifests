@@ -23,7 +23,7 @@ data:
   APP_ENV: local
   APP_LOG_LEVEL: notice
   APP_NAME: FireflyIII
-  APP_URL: http://firefly-iii-svc.firefly-iii.svc.cluster.local
+  APP_URL: https://ff3.monroeshindelar.com
   # AUDIT_LOG_CHANNEL: 
   AUDIT_LOG_LEVEL: emergency
   AUTHENTICATION_GUARD: web
@@ -91,10 +91,10 @@ data:
   SITE_OWNER: mail@example.com
   # TRACKER_SITE_ID:
   # TRACKER_URL: 
-  # TRUSTED_PROXIES: 
+  TRUSTED_PROXIES: "**"
   TZ: America/Los_Angeles
   USE_RUNNING_BALANCE: "false"
-  # VALID_URL_PROTOCOLS
+  # VALID_URL_PROTOCOLS:
 ---
 apiVersion: v1
 kind: ConfigMap
@@ -168,7 +168,7 @@ data:
   # SPECTRE_APP_ID:
   # TRACKER_SITE_ID:
   # TRACKER_URL:  
-  # TRUSTED_PROXIES:
+  TRUSTED_PROXIES: "**"
   TZ: America/Los_Angeles
   USE_CACHE: "true"
   # VANITY_URL:
