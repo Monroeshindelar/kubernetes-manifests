@@ -11,7 +11,7 @@ spec:
     - websecure
   routes:
     - kind: Rule
-      match: Host(`grafana.jevn.sex`)
+      match: Host(`grafana.monroeshindelar.com`) || Host(`grafana.monroe.gg`)
       priority: 10
       services:
         - name: grafana
