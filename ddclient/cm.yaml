@@ -5,6 +5,6 @@ metadata:
   labels:
     app: ddclient
   name: ddclient-cm
-  namespace: networking
+  namespace: ddclient
 data:
   TZ: America/Los_Angeles

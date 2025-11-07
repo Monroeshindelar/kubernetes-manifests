@@ -1,0 +1,104 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: firefly-iii-db
+  name: firefly-iii-db
+  namespace: firefly-iii
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: firefly-iii-db
+  template:
+    metadata:
+      labels:
+        app: firefly-iii-db
+    spec:
+      containers:
+      - envFrom:
+        - configMapRef:
+            name: firefly-iii-db-cm
+        - secretRef:
+            name: firefly-iii-db-secret
+        image:  postgres:17-trixie
+        imagePullPolicy: IfNotPresent
+        name: firefly-iii-db
+        ports:
+        - containerPort: 5432
+          protocol: TCP
+        volumeMounts:
+        - mountPath: /var/lib/postgresql/data
+          name: firefly-iii-db-data
+      volumes:
+        - persistentVolumeClaim:
+            claimName: firefly-iii-db
+          name: firefly-iii-db-data
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: firefly-iii
+  name: firefly-iii
+  namespace: firefly-iii
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: firefly-iii
+  template:
+    metadata:
+      labels:
+        app: firefly-iii
+    spec:
+      containers:
+      - envFrom:
+        - configMapRef:
+            name: firefly-iii-cm
+        - secretRef:
+            name: firefly-iii-secret
+        image: fireflyiii/core:latest
+        imagePullPolicy: Always
+        name: firefly-iii
+        ports:
+        - containerPort: 8080
+          protocol: TCP
+        volumeMounts:
+        - mountPath: /var/www/html/storage/upload
+          name: firefly-iii-data
+      volumes:
+        - persistentVolumeClaim:
+            claimName: firefly-iii
+          name: firefly-iii-data
+--- 
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: firefly-iii-data-importer
+  name: firefly-iii-data-importer
+  namespace: firefly-iii
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: firefly-iii-data-importer
+  template:
+    metadata:
+      labels:
+        app: firefly-iii-data-importer
+    spec:
+      containers:
+      - envFrom:
+        - configMapRef:
+            name: firefly-iii-data-importer-cm
+        - secretRef:
+            name: firefly-iii-data-importer-secret
+        image: fireflyiii/data-importer:latest
+        imagePullPolicy: Always
+        name: firefly-iii-data-importer
+        ports:
+        - containerPort: 8080
+          protocol: TCP

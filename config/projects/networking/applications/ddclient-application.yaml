@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: ddclient
+  namespace: argocd
+spec:
+  project: networking-project
+  sources:
+    - repoURL: https://github.com/Monroeshindelar/kubernetes-manifests.git
+      targetRevision: HEAD
+      path: ddclient
+      ref: git
+  destination:
+    server: "https://kubernetes.default.svc"
+    namespace: ddclient
+  syncPolicy:
+    automated:
+      prune: true

@@ -4,7 +4,7 @@ metadata:
   labels:
     app: ddclient
   name: ddclient
-  namespace: networking
+  namespace: ddclient
 spec:
   replicas: 1
   selector:

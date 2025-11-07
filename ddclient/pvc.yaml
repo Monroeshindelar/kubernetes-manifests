@@ -5,7 +5,7 @@ metadata:
   labels:
     app: ddclient
   name: ddclient
-  namespace: networking
+  namespace: ddclient
 spec:
   accessModes:
     - ReadWriteOnce

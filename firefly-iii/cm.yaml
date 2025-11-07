@@ -1,0 +1,175 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  labels:
+    app: firefly-iii
+  name: firefly-iii-db-cm
+  namespace: firefly-iii
+data:
+  POSTGRES_USER: firefly
+  POSTGRES_DATABASE: firefly
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  labels:
+    app: firefly-iii
+  name: firefly-iii-cm
+  namespace: firefly-iii
+data:
+  ALLOW_WEBHOOKS: "false"
+  APP_DEBUG: "false"
+  APP_ENV: local
+  APP_LOG_LEVEL: notice
+  APP_NAME: FireflyIII
+  APP_URL: http://firefly-iii-svc.firefly-iii.svc.cluster.local
+  # AUDIT_LOG_CHANNEL: 
+  AUDIT_LOG_LEVEL: emergency
+  AUTHENTICATION_GUARD: web
+  # AUTHENTICATION_GUARD_EMAIL:
+  AUTHENTICATION_GUARD_HEADER: REMOTE_USER
+  BROADCAST_DRIVER: log
+  CACHE_DRIVER: file
+  CACHE_PREFIX: firefly
+  # COOKIE_DOMAIN:
+  COOKIE_PATH: "/"
+  COOKIE_SAMESITE: lax
+  COOKIE_SECURE: "false"
+  # CUSTOM_LOGOUT_URL: 
+  DB_CONNECTION: pgsql
+  DB_DATABASE: firefly
+  DB_USERNAME: firefly
+  DB_HOST: firefly-iii-db-svc.firefly-iii.svc.cluster.local
+  DB_PORT: "5432"
+  # DB_SOCKET: 
+  DEFAULT_LANGUAGE: en_US
+  DEFAULT_LOCALE: equal
+  # DEMO_USERNAME: 
+  DISABLE_CSP_HEADER: "false"
+  DISABLE_FRAME_HEADER: "false"
+  DKR_CHECK_SQLITE: "false"
+  ENABLE_EXCHANGE_RATES: "false"
+  ENABLE_EXTERNAL_MAP: "false"
+  ENABLE_EXTERNAL_RATES: "false"
+  FIREFLY_III_LAYOUT: v1
+  LOG_CHANNEL: stack
+  MAIL_ALLOW_SELF_SIGNED: "false"
+  MAIL_ENCRYPTION: "null"
+  MAIL_FROM: changeme@example.com
+  # MAILGUN_DOMAIN: 
+  MAILGUN_ENDPOINT: api.mailgun.net
+  MAIL_HOST: "null"
+  MAIL_MAILER: log
+  MAIL_PORT: "2525"
+  # MAIL_SENDMAIL_COMMAND: 
+  MAIL_USERNAME: "null"
+  MAIL_VERIFY_PEER: "true"
+  MAIL_VERIFY_PEER_NAME: "true"
+  MAP_DEFAULT_LAT: "51.983333"
+  MAP_DEFAULT_LONG: "5.916667"
+  MAP_DEFAULT_ZOOM: "6"
+  # PAPERTRAIL_HOST:
+  # PAPERTRAIL_PORT:
+  # PASSPORT_PUBLIC_KEY: 
+  PGSQL_SCHEMA: public
+  PGSQL_SSL_MODE: prefer
+  PGSQL_SSL_ROOT_CERT: "null"
+  # PUSHER_KEY:
+  # PUSHER_ID: 
+  QUERY_PARSER_IMPLEMENTATION: new
+  QUEUE_DRIVER: sync
+  REDIS_CACHE_DB: "1"
+  REDIS_DB: "0"
+  REDIS_HOST: 127.0.0.1
+  # REDIS_PATH:
+  REDIS_PORT: "6379"
+  REDIS_SCHEME: tcp
+  # REDIS_USERNAME: 
+  SEND_ERROR_MESSAGE: "true"
+  SEND_REPORT_JOURNALS: "true"
+  SITE_OWNER: mail@example.com
+  # TRACKER_SITE_ID:
+  # TRACKER_URL: 
+  # TRUSTED_PROXIES: 
+  TZ: America/Los_Angeles
+  USE_RUNNING_BALANCE: "false"
+  # VALID_URL_PROTOCOLS
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  labels:
+    app: firefly-iii-data-importer
+  name: firefly-iii-data-importer-cm
+  namespace: firefly-iii
+data:
+  APP_DEBUG: "false"
+  APP_ENV: local
+  APP_NAME: DataImporter
+  APP_URL: http://localhost
+  # ASSET_URL: 
+  # AUTO_IMPORT_SECRET:
+  BROADCAST_DRIVER: log
+  CACHE_DRIVER: file
+  CAN_POST_AUTOIMPORT: "false"
+  CAN_POST_FILES: "false"
+  CONNECTION_TIMEOUT: "31.41"
+  ENABLE_MAIL_REPORT: "false"
+  EXPECT_SECURE_URL: "false"
+  FAKE_DATA: "false"
+  FALLBACK_IN_DIR: "false"
+  FALLBACK_LOCALE: en_US
+  FIREFLY_III_URL: http://firefly-iii-svc.firefly-iii.svc.cluster.local:8080
+  GOCARDLESS_GET_ACCOUNT_DETAILS: "false"
+  GOCARDLESS_GET_BALANCE_DETAILS: "false"
+  IGNORE_DUPLICATE_ERRORS: "false"
+  IGNORE_NOT_FOUND_TRANSACTIONS: "false"
+  # IMPORT_DIR_ALLOWLIST: 
+  IS_EXTERNAL: "false"
+  # JSON_CONFIGURATION_DIR: 
+  LOG_CHANNEL: stack
+  LOG_LEVEL: debug
+  LOG_RETURN_JSON: "false"
+  LUNCH_FLOW_API_URL: https://lunchflow.app/api/v1/
+  MAIL_DESTINATION: noreply@example.com
+  MAIL_ENCRYPTION: "null"
+  MAIL_FROM_ADDRESS: noreply@example.com
+  # MAILGUN_DOMAIN: 
+  # MAILGUN_ENDPOINT:
+  MAIL_HOST: smtp.mailtrap.io
+  # MAIL_MAILER:
+  MAIL_PORT: "2525"
+  MAIL_USERNAME: username
+  # NORDIGEN_ID: 
+  # NORDIGEN_KEY
+  NORDIGEN_SANDBOX: "false"
+  QUEUE_CONNECTION: sync
+  REDIS_CACHE_DB: "1"
+  REDIS_DB: "0"
+  REDIS_HOST: 127.0.0.1
+  REDIS_PORT: "6379"
+  RESPOND_TO_GOCARDLESS_LIMIT: wait
+  SESSION_DRIVER: file
+  SESSION_LIFETIME: "120"
+  SIMPLEFIN_AUTO_CREATE_EXPENSE_ACCOUNTS: "true"
+  SIMPLEFIN_CACHE_DURATION: "3600"
+  SIMPLEFIN_CLUSTERING_SIMILARITY_THRESHOLD: "0.7"
+  SIMPLEFIN_CONNECTION_TIMEOUT: "30"
+  SIMPLEFIN_DEFAULT_DATE_RANGE: "90"
+  # SIMPLEFIN_DEMO_URL:
+  SIMPLEFIN_ENABLE_CACHING: "true"
+  SIMPLEFIN_ENABLE_TRANSACTION_CLUSTERING: "true"
+  SIMPLEFIN_EXPENSE_MATCHING_THRESHOLD: "0.7"
+  SIMPLEFIN_REQUEST_TIMEOUT: "60"
+  SIMPLEFIN_RETRY_ATTEMPTS: "3"
+  # SIMPLEFIN_RETRY_DELAY:
+  SIMPLEFIN_SMART_EXPENSE_MATCHING: "true"
+  # SPECTRE_APP_ID:
+  # TRACKER_SITE_ID:
+  # TRACKER_URL:  
+  # TRUSTED_PROXIES:
+  TZ: America/Los_Angeles
+  USE_CACHE: "true"
+  # VANITY_URL:
+  VERIFY_TLS_SECURITY: "true"

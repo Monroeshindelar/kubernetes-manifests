@@ -6,9 +6,10 @@ metadata:
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
-  # Project description
   description: Project for networking related applications
   destinations:
+  - namespace: ddclient
+    server: https://kubernetes.default.svc
   - namespace: networking
     server: https://kubernetes.default.svc
   - namespace: pihole
