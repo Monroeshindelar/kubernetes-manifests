@@ -1,0 +1,26 @@
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: firefly-iii
+  namespace: firefly-iii
+  labels:
+    app.kubernetes.io/instance: traefik-networking
+    app.kubernetes.io/name: traefik
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - kind: Rule
+      match: Host(`ff3.monroe.gg`)
+      priority: 10
+      services:
+        - name: firefly-iii-svc
+          port: 8080
+    - kind: Rule
+      match: Host(`ff3.monroeshindelar.com`)
+      priority: 10
+      services:
+        - name: firefly-iii-svc
+          port: 8080
+  tls:
+    certResolver: porkbun
