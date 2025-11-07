@@ -12,13 +12,13 @@ spec:
     - websecure
   routes:
     - kind: Rule
-      match: Host(`argocd.jevn.sex`)
+      match: Host(`argocd.monroeshindelar.com`)
       priority: 10
       services:
         - name: argocd-server
           port: 80
     - kind: Rule
-      match: Host(`argocd.jevn.sex`) && Header(`Content-Type`, `application/grpc`)
+      match: Host(`argocd.monroeshindelar.com`) && Header(`Content-Type`, `application/grpc`)
       priority: 11
       services:
         - name: argocd-server

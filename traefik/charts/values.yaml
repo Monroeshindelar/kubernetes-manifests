@@ -199,7 +199,8 @@ ingressRoute:
     middlewares:
       - name: traefik-dashboard-auth
     # -- TLS options (e.g. secret containing certificate)
-    tls: {}
+    tls:
+      certResolver: porkbun
   healthcheck:
     # -- Create an IngressRoute for the healthcheck probe
     enabled: false
