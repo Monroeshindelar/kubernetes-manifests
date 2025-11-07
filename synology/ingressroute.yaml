@@ -11,18 +11,11 @@ spec:
   - websecure
   routes:
   - kind: Rule
-    match: Host(`punkrecords.jevn.sex`)
+    match: Host(`punkrecords.monroe.gg`) || Host(`punkrecords.monroeshindelar.com`)
     services:
     - kind: Service
       name: synology-service
       namespace: filesystem
       port: 5000
-  # - kind: Rule
-  #   match: Host(`qbt.jevn.sex`)
-  #   services:
-  #   - kind: Service
-  #     name: synology-service
-  #     namespace: filesystem
-  #     port: 9865
   tls:
     certResolver: porkbun

@@ -275,7 +275,8 @@ ingress:
   pathType: Prefix
 
   hosts:
-    - grafana.jevn.sex
+    - grafana.monroe.gg
+    - grafana.monroeshindelar.com
   ## Extra paths to prepend to every host configuration. This is useful when working with annotation based services.
   extraPaths: []
   # - path: /*
