@@ -12,7 +12,7 @@ spec:
     server: https://kubernetes.default.svc 
   - namespace: vaultwarden
     server: https://kubernetes.default.svc
-    sourceRepos:
+  sourceRepos:
     - '*'
   clusterResourceWhitelist:
     - group: '*'
