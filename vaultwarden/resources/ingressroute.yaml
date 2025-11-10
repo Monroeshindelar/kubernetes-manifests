@@ -1,0 +1,27 @@
+---
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: vaultwarden
+  namespace: vaultwarden
+  labels:
+    app.kubernetes.io/instance: traefik-networking
+    app.kubernetes.io/name: traefik
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - kind: Rule
+      match: Host(`vw.monroe.gg`)
+      priority: 10
+      services:
+        - name: vaultwarden-application
+          port: 80
+    - kind: Rule
+      match: Host(`vw.monroeshindelar.com`)
+      priority: 10
+      services:
+        - name: vaultwarden-application
+          port: 80
+  tls:
+    certResolver: porkbun
