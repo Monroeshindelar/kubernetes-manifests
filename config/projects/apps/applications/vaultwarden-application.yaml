@@ -1,0 +1,24 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: vaultwarden-application
+  namespace: argocd
+spec:
+  project: app-project
+  sources:
+    - chart: vaultwarden
+      repoURL: https://guerzon.github.io/vaultwarden 
+      targetRevision: 0.34.4
+      helm:
+        valueFiles:
+          - $git/vaultwarden/charts/values.yaml
+    - repoURL: https://github.com/Monroeshindelar/kubernetes-manifests.git
+      targetRevision: HEAD
+      path: vaultwarden/resources
+      ref: git
+  destination:
+    server: "https://kubernetes.default.svc"
+    namespace: vaultwarden
+  syncPolicy:
+    automated:
+      prune: true

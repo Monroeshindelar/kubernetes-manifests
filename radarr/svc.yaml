@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: radarr
+  name: radarr
+  namespace: radarr
+spec:
+  ports:
+    - name: "web"
+      port: 7878
+      targetPort: 7878
+  selector:
+    app: radarr
+  type: LoadBalancer

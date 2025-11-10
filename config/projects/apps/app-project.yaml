@@ -1,0 +1,19 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: app-project
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  description: Project for web apps 
+  destinations:
+  - namespace: firefly-iii
+    server: https://kubernetes.default.svc 
+  - namespace: vaultwarden
+    server: https://kubernetes.default.svc
+    sourceRepos:
+    - '*'
+  clusterResourceWhitelist:
+    - group: '*'
+      kind: '*'

@@ -2174,12 +2174,9 @@ server:
     # -- The list of additional hostnames to be covered by ingress record
     # @default -- `[]` (See [values.yaml])
     extraHosts:
-      - name: argocd.jevn.sex.local
-        path: /
-      - name: argocd.jevn.sex
-        path: /
       - name: argocd.monroeshindelar.com
         path: /
+      - name: argocd.monroe.gg
 
     # -- Additional ingress paths
     # @default -- `[]` (See [values.yaml])

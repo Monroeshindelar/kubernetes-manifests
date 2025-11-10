@@ -352,9 +352,8 @@ server:
     ## Must be provided if Ingress is enabled
     ##
     hosts:
-      - prometheus.jevn.sex.local
-      - prometheus.jevn.sex
-      - prometheus.monroeshindelar.com
+     - prometheus.monroeshindelar.com
+     - prometheus.monroe.gg
     #   - domain.com/prometheus
 
     path: /
@@ -385,7 +384,7 @@ server:
   hostAliases:
     - ip: "127.0.0.1"
       hostnames:
-        - "prometheus.jevn.sex.local"
+        - "prometheus.local"
 
   ## Node tolerations for server scheduling to nodes with taints
   ## Ref: https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/
