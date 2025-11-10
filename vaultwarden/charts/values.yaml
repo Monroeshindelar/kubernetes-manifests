@@ -50,7 +50,7 @@ image:
 
 ## @param replicas Number of deployment replicas
 ##
-replicas: 2
+replicas: 1
 
 ## @param fullnameOverride String to override the application name.
 ##
