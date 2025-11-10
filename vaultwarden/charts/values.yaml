@@ -299,13 +299,12 @@ storage:
   ## @param storage.data Data directory configuration, refer to values.yaml for parameters.
   ##
   data:
-    {}
-    # name: "vaultwarden-data"
-    # size: "15Gi"
+    name: "vaultwarden-data"
+    size: "25Gi"
     # class: ""
-    # path: "/data"
+    path: "/data"
     # keepPvc: false
-    # accessMode: "ReadWriteOnce"
+    accessMode: "ReadWriteOnce"
 
   ## @param storage.attachments Attachments directory configuration, refer to values.yaml for parameters.
   ## By default, attachments/ is located inside the data directory.
