@@ -131,7 +131,7 @@ readinessProbe:
 
 # -- Additional volumes to mount in the Jellyfin pod.
 volumes:
- - name: media
+ - name: library
    nfs:
      server: 10.0.0.100
      path: /volume1/media/library
@@ -139,7 +139,7 @@ volumes:
 # -- Additional volume mounts for the Jellyfin container.
 volumeMounts:
  - mountPath: /library
-   name: media
+   name: library
 
 # -- Node selector for pod scheduling.
 nodeSelector: {}
