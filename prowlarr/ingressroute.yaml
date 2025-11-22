@@ -1,0 +1,27 @@
+---
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: prowlarr
+  namespace: servarr
+  labels:
+    app.kubernetes.io/instance: traefik-networking
+    app.kubernetes.io/name: traefik
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - kind: Rule
+      match: Host(`prowlarr.monroe.gg`)
+      priority: 10
+      services:
+        - name: prowlarr
+          port: 9696
+    - kind: Rule
+      match: Host(`prowlarr.monroeshindelar.com`)
+      priority: 10
+      services:
+        - name: prowlarr
+          port: 9696
+  tls:
+    certResolver: porkbun

@@ -1,0 +1,15 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  labels:
+    app: unpackerr
+  name: unpackerr-cm
+  namespace: servarr
+data:
+  PUID: "1024"
+  PGID: "100"
+  TZ: America/Los_Angeles
+  UN_LOG_FILE: /data/downloads/unpackerr.log
+  UN_SONARR_0_URL: http://10.0.0.13:8989
+  UN_RADARR_0_URL: http://10.0.0.13:7878

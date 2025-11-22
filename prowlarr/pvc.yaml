@@ -2,11 +2,13 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: videos-claim
-  namespace: media
+  labels:
+    app: prowlarr
+  name: prowlarr
+  namespace: servarr
 spec:
   accessModes:
     - ReadWriteOnce
   resources:
     requests:
-      storage: 40Ti
+      storage: 15Gi

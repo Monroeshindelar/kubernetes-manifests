@@ -1,12 +1,12 @@
----
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  labels:
-    app: radarr
-  name: radarr-cm
-  namespace: radarr
-data:
-  PUID: "1024"
-  PGID: "1000"
-  TZ: America/Los_Angeles
+# ---
+# apiVersion: v1
+# kind: ConfigMap
+# metadata:
+#   labels:
+#     app: radarr
+#   name: radarr-cm
+#   namespace: servarr
+# data:
+#   PUID: "1024"
+#   PGID: "1000"
+#   TZ: America/Los_Angeles

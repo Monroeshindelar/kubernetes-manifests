@@ -18,11 +18,11 @@ metadata:
   name: teslamate-cm
   namespace: teslamate
 data:
+  CHECK_ORIGIN: "true"
   DATABASE_USER: teslamate
   DATABASE_NAME: teslamate
   DATABASE_HOST: teslamate-psql-svc.teslamate.svc.cluster.local
   GF_SERVER_DOMAIN: tesla.monroe.gg
-  GF_SERVER_SERVE_FROM_SUB_PATH: "true"
   MQTT_HOST: teslamate-svc.teslamate.svc.cluster.local
   VIRTUAL_HOST: tesla.monroe.gg
 ---

@@ -4,8 +4,8 @@ kind: IngressRoute
 metadata:
   annotations:
     kubernetes.io/ingress.class: traefik
-  name: radarr
-  namespace: servarr
+  name: jellyfin
+  namespace: jellyfin
   labels:
     app.kubernetes.io/name: traefik
 spec:
@@ -13,12 +13,12 @@ spec:
     - websecure
   routes:
     - kind: Rule
-      match: Host(`radarr.monroe.gg`) ||  Host(`radarr.monroeshindelar.com`)
+      match: Host(`jellyfin.monroe.gg`) ||  Host(`jellyfin.monroeshindelar.com`)
       priority: 10
       services:
         - kind: Service
-          name: radarr
-          namespace: servarr
-          port: 7878
+          name: jellyfin
+          namespace: jellyfin
+          port: 8096
   tls:
     certResolver: porkbun
