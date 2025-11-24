@@ -141,16 +141,49 @@ volumes:
     nfs:
       server: 10.0.0.100
       path: /volume1/media/library
+  - name: cache
+    hostPath:
+      path: /mnt/shared/jellyfin/cache
   - name: hwa
     hostPath:
-      path: /dev
+      path: /dev/dri
+  - name: nvidia-caps
+    hostPath:
+      path: /dev/nvidia-caps
+  - name: nvidia0
+    hostPath:
+      path: /dev/nvidia0
+  - name: nvidiactl
+    hostPath:
+      path: /dev/nvidiactl
+  - name: nvidia-modeset
+    hostPath:
+      path: /dev/nvidia-modeset
+  - name: nvidia-uvm
+    hostPath:
+      path: /dev/nvidia-uvm
+  - name: nvidia-uvm-tools
+    hostPath:
+      path: /dev/nvidia-uvm-tools
 
 # -- Additional volume mounts for the Jellyfin container.
 volumeMounts:
   - mountPath: /library
     name: library
   - name: hwa
-    mountPath: /dev
+    mountPath: /dev/dri
+  - name: nvidia-caps
+    mountPath: /dev/nvidia-caps
+  - name: nvidia0
+    mountPath: /dev/nvidia0
+  - name: nvidiactl
+    mountPath: /dev/nvidiactl
+  - name: nvidia-modeset
+    mountPath: /dev/nvidia-modeset
+  - name: nvidia-uvm
+    mountPath: /dev/nvidia-uvm
+  - name: nvidia-uvm-tools
+    mountPath: /dev/nvidia-uvm-tools
 
 # -- Node selector for pod scheduling.
 nodeSelector:
