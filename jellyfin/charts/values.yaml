@@ -150,7 +150,7 @@ volumeMounts:
   - mountPath: /library
     name: library
   - name: hwa
-    mouthPath: /dev/dri
+    mountPath: /dev/dri
 
 # -- Node selector for pod scheduling.
 nodeSelector:
