@@ -143,14 +143,14 @@ volumes:
       path: /volume1/media/library
   - name: hwa
     hostPath:
-      path: /dev/dri
+      path: /dev
 
 # -- Additional volume mounts for the Jellyfin container.
 volumeMounts:
   - mountPath: /library
     name: library
   - name: hwa
-    mountPath: /dev/dri
+    mountPath: /dev
 
 # -- Node selector for pod scheduling.
 nodeSelector:
