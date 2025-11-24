@@ -1,0 +1,35 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: overseerr
+  name: overseerr
+  namespace: servarr
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: overseerr
+  template:
+    metadata:
+      labels:
+        app: overseerr
+    spec:
+      containers:
+      - envFrom:
+        - configMapRef:
+            name: overseerr-cm
+        image: sctx/overseerr
+        imagePullPolicy: Always
+        name: overseerr
+        ports:
+        - containerPort: 9696
+          protocol: TCP
+        volumeMounts:
+        - mountPath: /app/config
+          name: overseerr-data
+      volumes:
+        - persistentVolumeClaim:
+            claimName: overseerr
+          name: overseerr-data

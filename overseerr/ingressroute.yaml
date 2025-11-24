@@ -1,0 +1,27 @@
+---
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: overseerr
+  namespace: servarr
+  labels:
+    app.kubernetes.io/instance: traefik-networking
+    app.kubernetes.io/name: traefik
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - kind: Rule
+      match: Host(`overseerr.monroe.gg`)
+      priority: 10
+      services:
+        - name: overseerr
+          port: 5055
+    - kind: Rule
+      match: Host(`overseerr.monroeshindelar.com`)
+      priority: 10
+      services:
+        - name: overseerr
+          port: 5055
+  tls:
+    certResolver: porkbun

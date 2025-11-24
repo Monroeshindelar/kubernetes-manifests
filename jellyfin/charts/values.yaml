@@ -138,7 +138,7 @@ volumes:
 
 # -- Additional volume mounts for the Jellyfin container.
 volumeMounts:
- - mountPath: /library
+ - mountPath: /ry
    name: library
 
 # -- Node selector for pod scheduling.
