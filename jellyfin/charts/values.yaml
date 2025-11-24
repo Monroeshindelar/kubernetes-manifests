@@ -142,7 +142,8 @@ volumeMounts:
    name: library
 
 # -- Node selector for pod scheduling.
-nodeSelector: {}
+nodeSelector:
+  nvidia.com/gpu.present: true
 
 # -- Tolerations for pod scheduling.
 tolerations: []
