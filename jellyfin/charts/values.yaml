@@ -165,6 +165,9 @@ volumes:
   - name: nvidia-uvm-tools
     hostPath:
       path: /dev/nvidia-uvm-tools
+  - name: libcuda
+    hostPath:
+      path: /usr/lib/x86_64-linux-gnu/libcuda.so.1
 
 # -- Additional volume mounts for the Jellyfin container.
 volumeMounts:
@@ -186,6 +189,8 @@ volumeMounts:
     mountPath: /dev/nvidia-uvm
   - name: nvidia-uvm-tools
     mountPath: /dev/nvidia-uvm-tools
+  - name: libcuda
+    mountPath: /usr/lib/x86_64-linux-gnu/libcuda.so.1
 
 # -- Node selector for pod scheduling.
 nodeSelector:
