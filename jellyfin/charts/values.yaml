@@ -204,8 +204,10 @@ jellyfin:
   args: []
   # -- Additional environment variables for the container.
   env:
-    - NVIDIA_DRIVER_CAPABILITIES: all
-    - NVIDIA_VISIBLE_DEVICES: all
+    - name: NVIDIA_DRIVER_CAPABILITIES
+      value: all
+    - name: NVIDIA_VISIBLE_DEVICES
+      value: all
 
 persistence:
   config:
