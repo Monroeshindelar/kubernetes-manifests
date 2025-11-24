@@ -43,7 +43,12 @@ podSecurityContext: {}
 
 # -- Security context for the container.
 securityContext:
-  privileged: true
+  capabilities:
+    add:
+      - "SYS_ADMIN"
+    drop:
+      - "ALL"
+  privileged: false
   # capabilities:
   #   drop:
   #   - ALL
@@ -132,15 +137,20 @@ readinessProbe:
 
 # -- Additional volumes to mount in the Jellyfin pod.
 volumes:
- - name: library
-   nfs:
-     server: 10.0.0.100
-     path: /volume1/media/library
+  - name: library
+    nfs:
+      server: 10.0.0.100
+      path: /volume1/media/library
+  - name: hwa
+    hostPath:
+      path: /dev/dri
 
 # -- Additional volume mounts for the Jellyfin container.
 volumeMounts:
- - mountPath: /library
-   name: library
+  - mountPath: /library
+    name: library
+  - name: hwa
+    mouthPath: /dev/dri
 
 # -- Node selector for pod scheduling.
 nodeSelector:
