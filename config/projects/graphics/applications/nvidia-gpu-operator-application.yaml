@@ -18,7 +18,7 @@ spec:
       ref: git
   destination:
     server: "https://kubernetes.default.svc"
-    namespace: nvidia-gpu-operator
+    namespace: nvidia
   syncPolicy:
     automated:
       prune: true
