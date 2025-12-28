@@ -1,0 +1,27 @@
+---
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: longhorn
+  namespace: longhorn
+  labels:
+    app.kubernetes.io/instance: traefik-networking
+    app.kubernetes.io/name: traefik
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - kind: Rule
+      match: Host(`longhorn.monroe.gg`)
+      priority: 10
+      services:
+        - name: longhorn-frontend
+          port: 80
+    - kind: Rule
+      match: Host(`longhorn.monroeshindelar.com`)
+      priority: 10
+      services:
+        - name: longhorn-frontend
+          port: 80
+  tls:
+    certResolver: porkbun
