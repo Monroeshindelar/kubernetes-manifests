@@ -331,3 +331,6 @@ annotations: {}
 serviceAccount:
   # Annotations to add to the service account
   annotations: {}
+
+preUpgradeChecker:
+  jobEnabled: false
