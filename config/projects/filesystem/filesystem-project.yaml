@@ -13,7 +13,7 @@ spec:
   - namespace: filesystem
     server: https://kubernetes.default.svc
     name: in-cluster
-  - namespace: longhorn-system
+  - namespace: longhorn
     server: https://kubernetes.default.svc
     name: in-cluster
   # Allow manifests to deploy from any Git repos
