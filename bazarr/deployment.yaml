@@ -3,38 +3,38 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: radarr
-  name: radarr
+    app: bazarr
+  name: bazarr
   namespace: servarr
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: radarr
+      app: bazarr
   template:
     metadata:
       labels:
-        app: radarr
+        app: bazarr
     spec:
       containers:
       - envFrom:
         - configMapRef:
-            name: radarr-cm
-        image: lscr.io/linuxserver/radarr:latest
+            name: bazarr-cm
+        image: lscr.io/linuxserver/bazarr:latest
         imagePullPolicy: Always
-        name: radarr
+        name: bazarr
         ports:
-        - containerPort: 7878
+        - containerPort: 6767
           protocol: TCP
         volumeMounts:
         - mountPath: /config
-          name: radarr-config
+          name: bazarr-config
         - mountPath: /data
           name: media
       volumes:
         - persistentVolumeClaim:
-            claimName: radarr
-          name: radarr-config
+            claimName: bazarr
+          name: bazarr-config
         - name: media
           nfs:
             server: 10.0.0.100

@@ -3,8 +3,8 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   labels:
-    app: radarr
-  name: radarr-cm
+    app: bazarr
+  name: bazarr-cm
   namespace: servarr
 data:
   PUID: "1024"

@@ -3,13 +3,12 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   labels:
-    app: radarr
-  name: radarr
+    app: bazarr
+  name: bazarr
   namespace: servarr
 spec:
   accessModes:
     - ReadWriteOnce
-  storageClassName: longhorn
   resources:
     requests:
-      storage: 50Gi
+      storage: 100Gi

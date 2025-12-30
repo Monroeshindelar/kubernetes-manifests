@@ -13,7 +13,7 @@ spec:
     - websecure
   routes:
     - kind: Rule
-      match: Host(`radarr.monroe.gg`) ||  Host(`radarr.monroeshindelar.com`)
+      match: Host(`radarr.monroe.gg`)
       priority: 10
       services:
         - kind: Service

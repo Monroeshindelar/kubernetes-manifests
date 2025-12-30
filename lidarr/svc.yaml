@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: lidarr
+  name: lidarr
+  namespace: servarr
+spec:
+  ports:
+    - name: "web"
+      port: 8686
+      targetPort: 8686
+  selector:
+    app: lidarr
+  type: LoadBalancer

@@ -3,38 +3,38 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: radarr
-  name: radarr
+    app: lidarr
+  name: lidarr
   namespace: servarr
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: radarr
+      app: lidarr
   template:
     metadata:
       labels:
-        app: radarr
+        app: lidarr
     spec:
       containers:
       - envFrom:
         - configMapRef:
-            name: radarr-cm
-        image: lscr.io/linuxserver/radarr:latest
+            name: lidarr-cm
+        image: lscr.io/linuxserver/lidarr:latest
         imagePullPolicy: Always
-        name: radarr
+        name: lidarr
         ports:
         - containerPort: 7878
           protocol: TCP
         volumeMounts:
         - mountPath: /config
-          name: radarr-config
+          name: lidarr-config
         - mountPath: /data
           name: media
       volumes:
         - persistentVolumeClaim:
-            claimName: radarr
-          name: radarr-config
+            claimName: lidarr
+          name: lidarr-config
         - name: media
           nfs:
             server: 10.0.0.100

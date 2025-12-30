@@ -1,0 +1,17 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: overseerr-application
+  namespace: argocd
+spec:
+  project: servarr-project
+  source:
+    repoURL: https://github.com/Monroeshindelar/kubernetes-manifests.git
+    targetRevision: HEAD
+    path: overseerr
+  destination:
+    server: "https://kubernetes.default.svc"
+    namespace: servarr
+  syncPolicy:
+    automated:
+      prune: true

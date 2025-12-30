@@ -3,8 +3,8 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   labels:
-    app: radarr
-  name: radarr
+    app: lidarr
+  name: lidarr
   namespace: servarr
 spec:
   accessModes:
@@ -12,4 +12,4 @@ spec:
   storageClassName: longhorn
   resources:
     requests:
-      storage: 50Gi
+      storage: 100Gi
