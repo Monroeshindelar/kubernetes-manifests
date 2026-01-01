@@ -1,0 +1,55 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: homeassistant
+  name: homeassistant
+  namespace: homeassistant
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: homeassistant
+  template:
+    metadata:
+      labels:
+        app: homeassistant
+    spec:
+      hostNetwork: true # Enable host network mode.
+      dnsPolicy: ClusterFirstWithHostNet # Ensure the pod can resolve domain names in the cluster.
+      containers:
+      - envFrom:
+        - configMapRef:
+            name: homeassistant-cm
+        image: ghcr.io/home-assistant/home-assistant:stable
+        imagePullPolicy: Always
+        name: homeassistant
+        ports:
+        - containerPort: 8123
+          protocol: TCP
+        volumeMounts:
+        - mountPath: /config
+          name: homeassistant-config
+        - mountPath: /etc/localtime
+          name: localtime
+          readOnly: true
+        - mountPath: /run/dbus
+          name: dbus
+          readOnly: true
+        securityContext:
+          capabilities:
+            add:
+              - NET_ADMIN
+              - NET_RAW
+      volumes:
+        - persistentVolumeClaim:
+            claimName: homeassistant
+          name: homeassistant-config
+        - hostPath:
+            path: /etc/localtime
+          name: localtime
+        - hostPath: 
+            path: /run/dbus
+          name: dbus
+        
