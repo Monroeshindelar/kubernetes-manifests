@@ -11,7 +11,7 @@ spec:
     path: home-assistant
   destination:
     server: "https://kubernetes.default.svc"
-    namespace: home-assistant
+    namespace: homeassistant
   syncPolicy:
     automated:
       prune: true
