@@ -8,6 +8,8 @@ metadata:
 spec:
   description: Project for iot related applications
   destinations:
+  - namespace: homeassistant 
+    server: https://kubernetes.default.svc
   - namespace: teslamate
     server: https://kubernetes.default.svc
   sourceRepos:
