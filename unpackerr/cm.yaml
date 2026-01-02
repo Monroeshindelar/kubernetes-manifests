@@ -11,5 +11,5 @@ data:
   PGID: "100"
   TZ: America/Los_Angeles
   UN_LOG_FILE: /data/downloads/unpackerr.log
-  UN_SONARR_0_URL: http://sonarr.servarr.svc.cluster.local
-  UN_RADARR_0_URL: http://radarr.servarr.svc.cluster.local
+  UN_SONARR_0_URL: https://sonarr.monroe.gg
+  UN_RADARR_0_URL: http://radarr.monroe.gg
