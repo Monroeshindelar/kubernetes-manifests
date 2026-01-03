@@ -51,7 +51,7 @@ spec:
           - secretRef:
               name: code-server-secret
         volumeMounts:
-          - mountPath: home-assistant
+          - mountPath: /home/coder/home-assistant
             name: homeassistant-config
       volumes:
         - persistentVolumeClaim:
