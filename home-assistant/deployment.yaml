@@ -47,9 +47,9 @@ spec:
         name: code-server
         ports:
         - containerPort: 8080
-        env:
-        - name: PASSWORD
-          value: "code321"
+        envFrom:
+          - secretRef:
+              name: code-server-secret
         volumeMounts:
           - mountPath: /homeassistant
             name: homeassistant-config

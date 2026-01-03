@@ -20,5 +20,12 @@ spec:
           name: homeassistant
           namespace: homeassistant
           port: 8123
+    - kind: Rule
+      match: Host(`homeassistant-vcs.monroe.gg`)
+      priority: 10
+      services:
+        - kind: Service
+          name: homeassistant
+          port: 8080
   tls:
     certResolver: porkbun
