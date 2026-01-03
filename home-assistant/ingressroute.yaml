@@ -21,7 +21,7 @@ spec:
           namespace: homeassistant
           port: 8123
     - kind: Rule
-      match: Host(`homeassistant-vcs.monroe.gg`)
+      match: Host(`homeassistant-code.monroe.gg`)
       priority: 10
       services:
         - kind: Service
