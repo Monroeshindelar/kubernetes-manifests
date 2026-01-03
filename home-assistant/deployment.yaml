@@ -42,6 +42,17 @@ spec:
             add:
               - NET_ADMIN
               - NET_RAW
+      - image: codercom/code-server
+        imagePullPolicy: IfNotPresent
+        name: code-server
+        ports:
+        - containerPort: 8080
+        env:
+        - name: PASSWORD
+          value: "code321"
+        volumeMounts:
+          - mountPath: /homeassistant
+            name: homeassistant-config
       volumes:
         - persistentVolumeClaim:
             claimName: homeassistant
