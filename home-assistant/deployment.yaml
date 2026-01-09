@@ -19,10 +19,10 @@ spec:
       hostNetwork: true # Enable host network mode.
       dnsPolicy: ClusterFirstWithHostNet # Ensure the pod can resolve domain names in the cluster.
       containers:
-      - envFrom:
+      - image: ghcr.io/home-assistant/home-assistant:stable
+        envFrom:
         - configMapRef:
             name: homeassistant-cm
-        image: ghcr.io/home-assistant/home-assistant:stable
         imagePullPolicy: Always
         name: homeassistant
         ports:
@@ -43,7 +43,7 @@ spec:
               - NET_ADMIN
               - NET_RAW
       - image: codercom/code-server
-        imagePullPolicy: IfNotPresent
+        imagePullPolicy: Always 
         name: code-server
         ports:
         - containerPort: 8080
@@ -56,10 +56,27 @@ spec:
         securityContext:
           runAsUser: 0
           runAsGroup: 0
+      - image:  ghcr.io/esphome/esphome
+        imagePullPolicy: Always
+        name: esphome
+        envFrom:
+          - configMapRef:
+              name: esphome-cm
+          - secretRef:
+              name: esphome-secret
+        volumeMounts:
+        - mountPath: /config
+          name: esphome-config
+        - mountPath: /etc/localtime
+          name: localtime
+          readOnly: true
       volumes:
         - persistentVolumeClaim:
             claimName: homeassistant
           name: homeassistant-config
+        - persistentVolumeClaim:
+            claimName: esphome
+          name: esphome-config
         - hostPath:
             path: /etc/localtime
           name: localtime
