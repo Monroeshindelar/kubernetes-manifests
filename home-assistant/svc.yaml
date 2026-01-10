@@ -13,6 +13,9 @@ spec:
     - name: code-server
       port: 8080
       targetPort: 8080
+    - name: esphome
+      port: 6052
+      targetPort: 6052
   selector:
     app: homeassistant
   type: LoadBalancer
