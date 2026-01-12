@@ -10,6 +10,8 @@ spec:
   destinations:
   - namespace: jellyfin
     server: https://kubernetes.default.svc
+  - namespace: immich
+    server: https://kubernetes.default.svc
   sourceRepos:
     - '*'
   clusterResourceWhitelist:

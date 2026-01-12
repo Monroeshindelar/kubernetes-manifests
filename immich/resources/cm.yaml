@@ -1,0 +1,10 @@
+---
+apiVersion: v1
+data:
+  POSTGRES_USER: postgres
+kind: ConfigMap
+metadata:
+  labels:
+    app: immich-psql
+  name: immich-psql-cm
+  namespace: immich

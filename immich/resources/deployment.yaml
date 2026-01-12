@@ -1,0 +1,38 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: immich-psql
+  name: immich-psql
+  namespace: immich
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: immich-psql
+  template:
+    metadata:
+      labels:
+        app: immich-psql
+    spec:
+      containers:
+      - envFrom:
+        - configMapRef:
+            name: immich-psql-cm
+        - secretRef:
+            name: immich-psql-secret
+        image: ghcr.io/tensorchord/cloudnative-vectorchord:17.7
+        imagePullPolicy: IfNotPresent
+        name: immich-psql
+        ports:
+        - containerPort: 5432
+          protocol: TCP
+        volumeMounts:
+        - mountPath: /var/lib/postgresql/data
+          subPath: data
+          name: immich-psql-data
+      volumes:
+      - persistentVolumeClaim:
+          claimName: immich-psql
+        name: immich-psql-data
