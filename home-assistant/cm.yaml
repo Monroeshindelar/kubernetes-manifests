@@ -18,3 +18,13 @@ metadata:
   namespace: homeassistant
 data:
   TZ: America/Los_Angeles
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  labels:
+    app: homeassistant
+  name: zigbee2mqtt-cm
+  namespace: homeassistant
+data:
+  TZ: America/Los_Angeles

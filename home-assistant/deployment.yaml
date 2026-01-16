@@ -106,7 +106,26 @@ spec:
             cpu: "500m"
         volumeMounts:
         - mountPath: /mosquitto
-          name: mosquitto 
+          name: mosquitto
+      - image: ghcr.io/koenkk/zigbee2mqtt
+        imagePullPolicy: Always
+        name: zigbee2mqtt
+        envFrom:
+        - configMapRef:
+            name: zigbee2mqtt-cm
+        resources:
+          requests:
+            memory: "1Gi"
+            cpu: "500m"
+          limits:
+            memory: "1Gi"
+            cpu: "500m"
+        volumeMounts:
+        - mountPath: /app/data
+          name: zigbee2mqtt-data
+        - mountPath: /run/udev
+          name: udev
+          readOnly: true
       volumes:
         - persistentVolumeClaim:
             claimName: homeassistant
@@ -114,6 +133,9 @@ spec:
         - persistentVolumeClaim:
             claimName: esphome
           name: esphome-config
+        - persistentVolumeClaim:
+            claimName: zigbee2mqtt
+          name: zigbee2mqtt-data
         - persistentVolumeClaim:
             claimName: mosquitto
           name: mosquitto
@@ -123,4 +145,7 @@ spec:
         - hostPath: 
             path: /run/dbus
           name: dbus
+        - hostPath:
+            path: /run/udev
+          name: udev
         
