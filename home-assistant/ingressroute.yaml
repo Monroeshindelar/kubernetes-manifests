@@ -26,7 +26,7 @@ spec:
       services:
         - kind: Service
           name: homeassistant
-          port: 8080
+          port: 8443
     - kind: Rule
       match: Host(`esphome.monroe.gg`)
       priority: 10
@@ -34,5 +34,12 @@ spec:
         - kind: Service
           name: homeassistant
           port: 6052
+    - kind: Rule
+      match: Host(`z2m.monroe.gg`)
+      priority: 10
+      services:
+        - kind: Service
+          name: homeassistant
+          port: 8081
   tls:
     certResolver: porkbun
