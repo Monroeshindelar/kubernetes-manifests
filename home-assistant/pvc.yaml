@@ -28,4 +28,17 @@ spec:
   resources:
     requests:
       storage: 15Gi
-
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  labels:
+    app: homeassistant
+  name: mosquitto
+  namespace: homeassistant
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 15Gi

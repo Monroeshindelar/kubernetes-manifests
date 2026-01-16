@@ -28,6 +28,13 @@ spec:
         ports:
         - containerPort: 8123
           protocol: TCP
+        resources:
+          requests:
+            memory: "4Gi"
+            cpu: "1000m"
+          limits:
+            memory: "6Gi"
+            cpu: "2000m"
         volumeMounts:
         - mountPath: /config
           name: homeassistant-config
@@ -50,6 +57,13 @@ spec:
         envFrom:
           - secretRef:
               name: code-server-secret
+        resources:
+          requests:
+            memory: "1Gi"
+            cpu: "500m"
+          limits:
+            memory: "1Gi"
+            cpu: "500m"
         volumeMounts:
           - mountPath: /home/coder/home-assistant
             name: homeassistant-config
@@ -64,12 +78,35 @@ spec:
               name: esphome-cm
           - secretRef:
               name: esphome-secret
+        resources:
+          requests:
+            memory: "1Gi"
+            cpu: "500m"
+          limits:
+            memory: "1Gi"
+            cpu: "500m"
         volumeMounts:
         - mountPath: /config
           name: esphome-config
         - mountPath: /etc/localtime
           name: localtime
           readOnly: true
+      - image: eclipse-mosquitto
+        imagePullPolicy: Always
+        name: mosquitto
+        ports:
+          - containerPort: 1883
+          - containerPort: 9001
+        resources:
+          requests:
+            memory: "1Gi"
+            cpu: "500m"
+          limits:
+            memory: "1Gi"
+            cpu: "500m"
+        volumeMounts:
+        - mountPath: /mosquitto
+          name: mosquitto 
       volumes:
         - persistentVolumeClaim:
             claimName: homeassistant
@@ -77,6 +114,9 @@ spec:
         - persistentVolumeClaim:
             claimName: esphome
           name: esphome-config
+        - persistentVolumeClaim:
+            claimName: mosquitto
+          name: mosquitto
         - hostPath:
             path: /etc/localtime
           name: localtime
