@@ -11,8 +11,8 @@ spec:
       port: 8123
       targetPort: 8123
     - name: code-server
-      port: 8080
-      targetPort: 8080
+      port: 8443
+      targetPort: 8443
     - name: esphome
       port: 6052
       targetPort: 6052

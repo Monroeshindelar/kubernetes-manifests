@@ -49,11 +49,11 @@ spec:
             add:
               - NET_ADMIN
               - NET_RAW
-      - image: codercom/code-server
+      - image: lscr.io/linuxserver/code-server:latest
         imagePullPolicy: Always 
         name: code-server
         ports:
-        - containerPort: 8080
+        - containerPort: 8443
         envFrom:
           - secretRef:
               name: code-server-secret
