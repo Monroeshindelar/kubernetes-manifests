@@ -40,6 +40,6 @@ spec:
       services:
         - kind: Service
           name: homeassistant
-          port: 8081
+          port: 8080
   tls:
     certResolver: porkbun
