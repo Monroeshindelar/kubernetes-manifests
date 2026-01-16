@@ -28,3 +28,15 @@ metadata:
   namespace: homeassistant
 data:
   TZ: America/Los_Angeles
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  labels:
+    app: homeassistant
+  name: code-server-cm
+  namespace: homeassistant
+data:
+  TZ: America/Los_Angeles
+  PGID: "0"
+  PUID: "0"

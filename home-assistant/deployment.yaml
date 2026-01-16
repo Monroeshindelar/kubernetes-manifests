@@ -57,6 +57,8 @@ spec:
         envFrom:
           - secretRef:
               name: code-server-secret
+          - configMapRef:
+              name: code-server-cm
         resources:
           requests:
             memory: "1Gi"
