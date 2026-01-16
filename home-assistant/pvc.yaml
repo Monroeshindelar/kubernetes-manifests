@@ -42,3 +42,17 @@ spec:
   resources:
     requests:
       storage: 15Gi
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  labels:
+    app: homeassistant
+  name: zigbee2mqtt
+  namespace: homeassistant
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 15Gi
