@@ -113,6 +113,8 @@ spec:
         envFrom:
         - configMapRef:
             name: zigbee2mqtt-cm
+        ports:
+          - containerPort: 8081
         resources:
           requests:
             memory: "1Gi"
