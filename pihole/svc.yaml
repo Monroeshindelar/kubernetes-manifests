@@ -96,6 +96,7 @@ metadata:
   name: pihole-web
   namespace: pihole
 spec:
+  loadBalancerIP: 10.0.0.153
   allocateLoadBalancerNodePorts: true
   externalTrafficPolicy: Local
   internalTrafficPolicy: Cluster
@@ -124,6 +125,7 @@ metadata:
   name: pihole-1-web
   namespace: pihole
 spec:
+  loadBalancerIP: 10.0.0.154
   allocateLoadBalancerNodePorts: true
   externalTrafficPolicy: Local
   ipFamilies:
