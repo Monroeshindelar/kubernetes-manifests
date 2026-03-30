@@ -26,6 +26,9 @@ spec:
         ports:
         - containerPort: 5055
           protocol: TCP
+        securityContext:
+          runAsNonRoot: true
+          runAsUser: 1000
         volumeMounts:
         - mountPath: /app/config
           name: overseerr-data
