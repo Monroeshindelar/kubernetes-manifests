@@ -20,11 +20,11 @@ spec:
       - envFrom:
         - configMapRef:
             name: overseerr-cm
-        image: sctx/overseerr
+        image: ghcr.io/seerr-team/seerr
         imagePullPolicy: Always
         name: overseerr
         ports:
-        - containerPort: 9696
+        - containerPort: 5055
           protocol: TCP
         volumeMounts:
         - mountPath: /app/config
