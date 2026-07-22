@@ -12,12 +12,18 @@ spec:
       port: 8211
       protocol: UDP
       targetPort: server
-      nodePort: 30010
     - name: query
       port: 27015
       protocol: UDP
       targetPort: query
-      nodePort: 30011
+    - name: server
+      port: 8212
+      protocol: UDP
+      targetPort: server
+    - name: query
+      port: 27016
+      protocol: UDP
+      targetPort: query
   selector:
     app: palworld-server
   type: LoadBalancer

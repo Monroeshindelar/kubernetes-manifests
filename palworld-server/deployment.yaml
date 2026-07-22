@@ -54,3 +54,59 @@ spec:
         - name: palworld-server-datadir
           persistentVolumeClaim:
             claimName: palworld-server
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: palworld-server
+  name: palworld-server-bryce
+  namespace: palworld-server
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: palworld-server
+  template:
+    metadata:
+      labels:
+        app: palworld-server
+    spec:
+      containers:
+        - name: palworld-server
+          image: thijsvanloef/palworld-server-docker
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8212
+              name: server
+              protocol: UDP
+            - containerPort: 27016
+              name: query
+              protocol: UDP
+          envFrom:
+            - configMapRef: 
+                name: palworld-bryce-cm
+          env:
+            - name: ADMIN_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: palworld-bryce-secrets
+                  key: rconPassword
+            - name: SERVER_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: palworld-bryce-secrets
+                  key: serverPassword
+          resources:
+            requests:
+              memory: "16Gi"
+              cpu: "4000m"
+          volumeMounts:
+            - mountPath: /palworld
+              name: palworld-server-datadir
+      volumes:
+        - name: palworld-server-datadir
+          persistentVolumeClaim:
+            claimName: palworld-server-bryce
