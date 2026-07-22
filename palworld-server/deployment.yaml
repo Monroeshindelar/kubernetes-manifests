@@ -79,9 +79,11 @@ spec:
           image: thijsvanloef/palworld-server-docker
           imagePullPolicy: IfNotPresent
           ports:
-            - containerPort: 8212
+            - containerPort: 9211
               name: server
               protocol: UDP
+            - containerPort: 9212
+              name: rest-api
             - containerPort: 27016
               name: query
               protocol: UDP
@@ -105,8 +107,8 @@ spec:
               cpu: "4000m"
           volumeMounts:
             - mountPath: /palworld
-              name: palworld-server-datadir
+              name: palworld-server-bryce-datadir
       volumes:
-        - name: palworld-server-datadir
+        - name: palworld-server-bryce-datadir
           persistentVolumeClaim:
             claimName: palworld-server-bryce

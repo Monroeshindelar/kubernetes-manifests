@@ -16,14 +16,17 @@ spec:
       port: 27015
       protocol: UDP
       targetPort: query
-    - name: server
-      port: 8212
+    - name: server-bryce
+      port: 9211
       protocol: UDP
       targetPort: server
-    - name: query
+    - name: query-bryce
       port: 27016
       protocol: UDP
       targetPort: query
+    - name: rest-api-bryce
+      port: 9212
+      targetPort: rest-api
   selector:
     app: palworld-server
   type: LoadBalancer
