@@ -112,6 +112,10 @@ spec:
       - image: ghcr.io/koenkk/zigbee2mqtt
         imagePullPolicy: Always
         name: zigbee2mqtt
+        command:
+        - /bin/sh
+        - -c
+        - "until nc -z localhost 1883; do echo 'Waiting for mosquitto...'; sleep 5; done && exec node index.js"
         envFrom:
         - configMapRef:
             name: zigbee2mqtt-cm
