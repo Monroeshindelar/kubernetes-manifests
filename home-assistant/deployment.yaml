@@ -19,7 +19,7 @@ spec:
       hostNetwork: true # Enable host network mode.
       dnsPolicy: ClusterFirstWithHostNet # Ensure the pod can resolve domain names in the cluster.
       containers:
-      - image: ghcr.io/home-assistant/home-assistant:stable
+      - image: ghcr.io/home-assistant/home-assistant:stabl
         envFrom:
         - configMapRef:
             name: homeassistant-cm
@@ -93,22 +93,22 @@ spec:
       #   - mountPath: /etc/localtime
       #     name: localtime
       #     readOnly: true
-      # - image: eclipse-mosquitto
-      #   imagePullPolicy: Always
-      #   name: mosquitto
-      #   ports:
-      #     - containerPort: 1883
-      #     - containerPort: 9001
-      #   resources:
-      #     requests:
-      #       memory: "1Gi"
-      #       cpu: "500m"
-      #     limits:
-      #       memory: "1Gi"
-      #       cpu: "500m"
-      #   volumeMounts:
-      #   - mountPath: /mosquitto
-      #     name: mosquitto
+      - image: eclipse-mosquitto
+        imagePullPolicy: Always
+        name: mosquitto
+        ports:
+          - containerPort: 1883
+          - containerPort: 9001
+        resources:
+          requests:
+            memory: "1Gi"
+            cpu: "500m"
+          limits:
+            memory: "1Gi"
+            cpu: "500m"
+        volumeMounts:
+        - mountPath: /mosquitto
+          name: mosquitto
       # - image: ghcr.io/koenkk/zigbee2mqtt
       #   imagePullPolicy: Always
       #   name: zigbee2mqtt
