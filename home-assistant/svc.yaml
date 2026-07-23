@@ -17,14 +17,11 @@ spec:
       port: 6052
       targetPort: 6052
     - name: zigbee2mqtt
-      port: 9090
-      targetPort: 9090
+      port: 8080
+      targetPort: 8080
     - name: mosquitto
       port: 9001
       targetPort: 9091
-    - name: otbr
-      port: 8080
-      targetPort: 8080
   selector:
     app: homeassistant
   type: LoadBalancer
