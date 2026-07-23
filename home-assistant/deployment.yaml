@@ -109,7 +109,7 @@ spec:
         volumeMounts:
         - mountPath: /mosquitto
           name: mosquitto
-      - image: ghcr.io/matter-labs/python-matter-server:stable
+      - image: ghcr.io/matter-js/python-matter-server:stable
         imagePullPolicy: Always
         name: matter-server
         ports:
