@@ -72,27 +72,27 @@ spec:
         securityContext:
           runAsUser: 0
           runAsGroup: 0
-      - image:  ghcr.io/esphome/esphome
-        imagePullPolicy: Always
-        name: esphome
-        envFrom:
-          - configMapRef:
-              name: esphome-cm
-          - secretRef:
-              name: esphome-secret
-        resources:
-          requests:
-            memory: "1Gi"
-            cpu: "500m"
-          limits:
-            memory: "1Gi"
-            cpu: "500m"
-        volumeMounts:
-        - mountPath: /config
-          name: esphome-config
-        - mountPath: /etc/localtime
-          name: localtime
-          readOnly: true
+      # - image:  ghcr.io/esphome/esphome
+      #   imagePullPolicy: Always
+      #   name: esphome
+      #   envFrom:
+      #     - configMapRef:
+      #         name: esphome-cm
+      #     - secretRef:
+      #         name: esphome-secret
+      #   resources:
+      #     requests:
+      #       memory: "1Gi"
+      #       cpu: "500m"
+      #     limits:
+      #       memory: "1Gi"
+      #       cpu: "500m"
+      #   volumeMounts:
+      #   - mountPath: /config
+      #     name: esphome-config
+      #   - mountPath: /etc/localtime
+      #     name: localtime
+      #     readOnly: true
       - image: eclipse-mosquitto
         imagePullPolicy: Always
         name: mosquitto
@@ -120,7 +120,7 @@ spec:
         - configMapRef:
             name: zigbee2mqtt-cm
         ports:
-          - containerPort: 8080
+          - containerPort: 9090
         resources:
           requests:
             memory: "1Gi"
@@ -134,31 +134,6 @@ spec:
         - mountPath: /run/udev
           name: udev
           readOnly: true
-      - image: openthread/border-router
-        imagePullPolicy: Always
-        name: otbr
-        # envFrom:
-        # - secretRef:
-        #     name: otbr-secret
-        resources:
-          requests:
-            memory: "256Mi"
-            cpu: "250m"
-          limits:
-            memory: "512Mi"
-            cpu: "500m"
-        securityContext:
-          privileged: true
-          capabilities:
-            add:
-              - NET_ADMIN
-        volumeMounts:
-        - mountPath: /data
-          name: otbr-data
-        - mountPath: /dev/ttyACM0
-          name: ttyacm0
-        - mountPath: /dev/net/tun
-          name: dev-tun
       volumes:
         - persistentVolumeClaim:
             claimName: homeassistant
@@ -181,12 +156,6 @@ spec:
         - hostPath:
             path: /run/udev
           name: udev
-        - hostPath:
-            path: /var/lib/otbr
-          name: otbr-data
-        - hostPath:
-            path: /dev/ttyACM0
-          name: ttyacm0
         - hostPath:
             path: /dev/net/tun
           name: dev-tun
