@@ -22,6 +22,9 @@ spec:
     - name: mosquitto
       port: 9001
       targetPort: 9091
+    - name: matter-server
+      port: 5580
+      targetPort: 5580
   selector:
     app: homeassistant
   type: LoadBalancer

@@ -109,6 +109,28 @@ spec:
         volumeMounts:
         - mountPath: /mosquitto
           name: mosquitto
+      - image: ghcr.io/matter-labs/python-matter-server:stable
+        imagePullPolicy: Always
+        name: matter-server
+        ports:
+        - containerPort: 5580
+          protocol: TCP
+        resources:
+          requests:
+            memory: "512Mi"
+            cpu: "250m"
+          limits:
+            memory: "512Mi"
+            cpu: "250m"
+        volumeMounts:
+        - mountPath: /data
+          name: matter-server-data
+        - mountPath: /run/dbus
+          name: dbus
+          readOnly: true
+        securityContext:
+          appArmorProfile:
+            type: Unconfined
       - image: ghcr.io/koenkk/zigbee2mqtt
         imagePullPolicy: Always
         name: zigbee2mqtt
@@ -150,6 +172,9 @@ spec:
         - hostPath:
             path: /etc/localtime
           name: localtime
+        - persistentVolumeClaim:
+            claimName: matter-server
+          name: matter-server-data
         - hostPath:
             path: /run/dbus
           name: dbus
