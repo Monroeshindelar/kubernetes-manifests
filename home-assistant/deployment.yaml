@@ -19,7 +19,7 @@ spec:
       hostNetwork: true # Enable host network mode.
       dnsPolicy: ClusterFirstWithHostNet # Ensure the pod can resolve domain names in the cluster.
       containers:
-      - image: ghcr.io/home-assistant/home-assistant:stabl
+      - image: ghcr.io/home-assistant/home-assistant:stable
         envFrom:
         - configMapRef:
             name: homeassistant-cm
