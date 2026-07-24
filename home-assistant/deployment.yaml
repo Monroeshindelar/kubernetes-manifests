@@ -131,6 +131,10 @@ spec:
         securityContext:
           appArmorProfile:
             type: Unconfined
+          capabilities:
+            add:
+              - NET_ADMIN
+              - NET_RAW
       - image: ghcr.io/koenkk/zigbee2mqtt
         imagePullPolicy: Always
         name: zigbee2mqtt
