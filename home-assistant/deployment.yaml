@@ -112,10 +112,6 @@ spec:
       - image: ghcr.io/matter-js/python-matter-server:stable
         imagePullPolicy: Always
         name: matter-server
-        args:
-        - --storage-path=/data
-        - --paa-root-cert-dir=/data/credentials
-        - --primary-interface=enp0s31f6
         ports:
         - containerPort: 5580
           protocol: TCP
