@@ -112,6 +112,13 @@ spec:
       - image: ghcr.io/matter-js/python-matter-server:stable
         imagePullPolicy: Always
         name: matter-server
+        args:
+        - --storage-path=/data
+        - --paa-root-cert-dir=/data/credentials
+        - --primary-interface=$(PRIMARY_INTERFACE)
+        env:
+        - name: PRIMARY_INTERFACE
+          value: "eth0"  # replace with your node's physical interface name (e.g. eno1, enp3s0)
         ports:
         - containerPort: 5580
           protocol: TCP
