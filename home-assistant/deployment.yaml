@@ -141,7 +141,7 @@ spec:
         command:
         - /bin/sh
         - -c
-        - "until nc -z 127.0.0.1 1883; do echo 'Waiting for mosquitto...'; sleep 5; done && exec node index.js"
+        - "until nc -w 1 localhost 1883 < /dev/null; do echo 'Waiting for mosquitto...'; sleep 5; done && exec node index.js"
         envFrom:
         - configMapRef:
             name: zigbee2mqtt-cm
